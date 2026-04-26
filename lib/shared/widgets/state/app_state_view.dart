@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:starter_project/app/core/widgets/buttons/app_button.dart';
+import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 
 enum AppViewType { empty, error }
 

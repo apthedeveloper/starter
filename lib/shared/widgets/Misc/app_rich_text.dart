@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/extensions/context.extenstion.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
 
 class AppTextSpan {
   final String text;

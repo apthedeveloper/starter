@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project/app/routes/app_router.dart';
-import 'package:starter_project/app/core/services/feedback_services.dart';
+import 'package:starter_project/core/config/app_config.dart';
+import 'package:starter_project/shared/services/feedback_services.dart';
 import 'package:starter_project/app/theme/app_theme.dart';
-import 'package:starter_project/bootstrap/env.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: Env.appName,
+      title: AppEnvironment.config.appName,
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: AppTheme.lightTheme,

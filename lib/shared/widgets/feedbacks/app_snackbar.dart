@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/extensions/context.extenstion.dart';
-import 'package:starter_project/app/core/services/feedback_services.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
+import 'package:starter_project/shared/services/feedback_services.dart';
 
 enum SnackbarType { success, error, warning, info }
 

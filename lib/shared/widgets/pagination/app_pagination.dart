@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/widgets/pagination/pagination_state_model.dart';
+import 'package:starter_project/shared/states/pagination_state.dart';
 
 class AppPagination<T> extends StatefulWidget {
   final PaginationState<T> state;

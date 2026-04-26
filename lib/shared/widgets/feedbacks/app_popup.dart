@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/extensions/context.extenstion.dart';
-import 'package:starter_project/app/core/widgets/buttons/app_button.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
+import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 import 'package:starter_project/app/theme/colors/app_colors.dart';
 
 enum PopupAction { confirm, cancel, dismiss }

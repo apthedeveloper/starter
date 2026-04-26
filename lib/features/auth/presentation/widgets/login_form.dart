@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:starter_project/app/core/extensions/spacing.extenstion.dart';
-import 'package:starter_project/app/core/layout/app_layout.dart';
-import 'package:starter_project/app/core/controller/selection_controller.dart';
-import 'package:starter_project/app/core/model/selection_item.dart';
-import 'package:starter_project/app/core/utils/validators.dart';
-import 'package:starter_project/app/core/widgets/Misc/app_rich_text.dart';
-import 'package:starter_project/app/core/widgets/app_inputs/app_dropdown.dart';
-import 'package:starter_project/app/core/widgets/app_inputs/app_input_label.dart';
-import 'package:starter_project/app/core/widgets/app_inputs/app_text_field.dart';
-import 'package:starter_project/app/core/widgets/buttons/app_button.dart';
-import 'package:starter_project/app/core/widgets/feedbacks/app_popup.dart';
-import 'package:starter_project/app/core/widgets/pagination/pagination_state_model.dart';
+import 'package:starter_project/core/extensions/spacing.extenstion.dart';
+import 'package:starter_project/app/layout/app_layout.dart';
+import 'package:starter_project/shared/controllers/selection_controller.dart';
+import 'package:starter_project/shared/models/selectable_item.dart';
+import 'package:starter_project/core/utils/validators.dart';
+import 'package:starter_project/shared/widgets/Misc/app_rich_text.dart';
+import 'package:starter_project/shared/widgets/inputs/app_dropdown.dart';
+import 'package:starter_project/shared/widgets/inputs/app_input_label.dart';
+import 'package:starter_project/shared/widgets/inputs/app_text_field.dart';
+import 'package:starter_project/shared/widgets/buttons/app_button.dart';
+import 'package:starter_project/shared/widgets/feedbacks/app_popup.dart';
+import 'package:starter_project/shared/states/pagination_state.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -182,46 +182,23 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
-
-    // Expanded(
-    //   child: Consumer<DemoController>(
-    //     builder: (context, controller, _) {
-    //       final state = controller.state;
-
-    //       return AppPagination(
-    //         state: state,
-    //         itemBuilder: (context, item, index) {
-    //           return ListTile(title: Text(item));
-    //         },
-    //         onLoadMore: () => controller.fetch(),
-    //         onRefresh: () => controller.fetch(isRefresh: true),
-
-    //         builder: (controller, itemBuilder, itemCount) {
-    //           return ListView.builder(
-    //             shrinkWrap: true,
-    //             controller: controller,
-    //             itemBuilder: itemBuilder,
-    //             itemCount: itemCount,
-    //           );
-    //         },
-    //       );
-    //     },
-    //   ),
-    // );
   }
 }
 
 class DemoController extends ChangeNotifier {
-  PaginationState<AppSelectionItem<String, String>> state =
-      const PaginationState(items: [], isLoading: false, isLastPage: false);
+  PaginationState<SelectableItem<String, String>> state = const PaginationState(
+    items: [],
+    isLoading: false,
+    isLastPage: false,
+  );
 
   int _page = 1;
   final int _limit = 10;
   int _total = 0;
-  late final List<AppSelectionItem<String, String>> _allItems = List.generate(
+  late final List<SelectableItem<String, String>> _allItems = List.generate(
     100,
     (i) {
-      return AppSelectionItem(id: "value_$i", data: "Label $i");
+      return SelectableItem(id: "value_$i", data: "Label $i");
     },
   );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/constants/app_spacing.dart';
-import 'package:starter_project/app/core/extensions/context.extenstion.dart';
+import 'package:starter_project/core/constants/app_spacing.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
 
 class AppSelectable extends StatelessWidget {
   final bool isSelected;

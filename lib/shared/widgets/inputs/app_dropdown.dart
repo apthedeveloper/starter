@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/app/core/constants/app_spacing.dart';
-import 'package:starter_project/app/core/extensions/context.extenstion.dart';
-import 'package:starter_project/app/core/extensions/textstyle_extenstion.dart';
-import 'package:starter_project/app/core/controller/selection_controller.dart';
-import 'package:starter_project/app/core/model/selection_item.dart';
-import 'package:starter_project/app/core/widgets/app_inputs/app_text_field.dart';
-import 'package:starter_project/app/core/widgets/pagination/app_pagination.dart';
-import 'package:starter_project/app/core/widgets/pagination/pagination_state_model.dart';
+import 'package:starter_project/core/constants/app_spacing.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
+import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
+import 'package:starter_project/shared/controllers/selection_controller.dart';
+import 'package:starter_project/shared/models/selectable_item.dart';
+import 'package:starter_project/shared/widgets/inputs/app_text_field.dart';
+import 'package:starter_project/shared/widgets/pagination/app_pagination.dart';
+import 'package:starter_project/shared/states/pagination_state.dart';
 
 class AppDropdown<V> extends StatefulWidget {
   final SelectionController<V> controller;
-  final List<AppSelectionItem<V, String>> items;
+  final List<SelectableItem<V, String>> items;
   final Widget Function(bool)? dropdownItemChild;
   final Widget Function(GlobalKey) target;
   final Function(List<String>)? onItemTap;
-  final Future<PaginationState<AppSelectionItem<V, String>>> Function({
+  final Future<PaginationState<SelectableItem<V, String>>> Function({
     String? value,
     bool forceRefresh,
   })?
@@ -46,7 +46,7 @@ class _AppDropdownState extends State<AppDropdown> {
   final layerLink = LayerLink();
   OverlayEntry? entry;
   final GlobalKey fieldKey = GlobalKey();
-  late final ValueNotifier<PaginationState<AppSelectionItem>> state;
+  late final ValueNotifier<PaginationState<SelectableItem>> state;
 
   @override
   void initState() {

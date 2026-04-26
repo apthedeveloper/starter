@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:starter_project/app/core/model/api_exception.dart';
-import 'package:starter_project/bootstrap/env.dart';
+import 'package:starter_project/core/config/app_config.dart';
+import 'package:starter_project/core/error/api_exception.dart';
 
 enum HttpMethod { get, post, put, delete }
 
@@ -9,7 +9,7 @@ final class ApiClient {
     _dio =
         Dio(
             BaseOptions(
-              baseUrl: Env.baseUrl,
+              baseUrl: AppEnvironment.config.baseUrl,
 
               // Timeouts
               connectTimeout: const Duration(seconds: 30),
@@ -24,13 +24,14 @@ final class ApiClient {
               validateStatus: (status) {
                 return status != null && status < 500;
               },
+              headers: {'x-api-key': AppEnvironment.config.apiKey},
 
               // Extra metadata (optional)
               extra: {'withCredentials': true},
             ),
           )
           ..interceptors.addAll([
-            if (Env.enableLogging)
+            if (AppEnvironment.config.enableLogging)
               LogInterceptor(
                 request: true,
                 requestBody: true,
