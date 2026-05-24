@@ -9,7 +9,6 @@ extension ContextExtension on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
 
   AppThemeAccessor get colors => AppThemeAccessor(this);
-  AppThemeColors get appColors => Theme.of(this).extension<AppThemeColors>()!;
 
   EdgeInsets get systemPadding => MediaQuery.of(this).padding;
 }

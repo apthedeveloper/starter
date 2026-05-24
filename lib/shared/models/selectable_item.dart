@@ -11,7 +11,7 @@ class SelectableItem<V, D> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is SelectableItem && other.id == id);
-  }
+  } 
 
   @override
   int get hashCode => id.hashCode;

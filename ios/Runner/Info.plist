@@ -66,5 +66,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	
+	<!-- Custom -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs gallery access to select photos.</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to take photos.</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app saves edited photos to your gallery.</string>
 </dict>
 </plist>

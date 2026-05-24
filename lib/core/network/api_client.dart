@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:starter_project/core/config/app_config.dart';
+import 'package:starter_project/core/config/config.dart';
 import 'package:starter_project/core/error/api_exception.dart';
 
 enum HttpMethod { get, post, put, delete }
@@ -64,7 +64,7 @@ final class ApiClient {
     Map<String, dynamic>? query,
     Map<String, dynamic>? headers,
     dynamic body,
-    required T Function(dynamic json) parser,
+    required T Function(Response) onResponse,
     CancelToken? cancelToken,
     void Function(int sent, int total)? onProgress,
   }) async {
@@ -93,7 +93,7 @@ final class ApiClient {
       }
 
       try {
-        return parser(response.data);
+        return onResponse(response);
       } catch (e, stack) {
         throw ApiException(
           "Failed to parse response",
@@ -133,7 +133,7 @@ final class ApiClient {
 
     final response = await request(
       path,
-      parser: parser,
+      onResponse: parser,
       headers: headers,
       method: HttpMethod.post,
       body: formData,

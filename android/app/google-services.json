@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123385729636",
+    "project_id": "apdev-starer",
+    "storage_bucket": "apdev-starer.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123385729636:android:bd7604e5822eb0329cc571",
+        "android_client_info": {
+          "package_name": "com.apdev.starter.starter_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgUip5FCH_uCZwQ6VLg_hlhDpjpRDan8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

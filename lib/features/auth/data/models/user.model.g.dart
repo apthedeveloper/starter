@@ -1,0 +1,20 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'user.model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
+  id: json['id'] as String,
+  email: json['email'] as String,
+  isEmailVerified: json['isEmailVerified'] as bool,
+);
+
+Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'isEmailVerified': instance.isEmailVerified,
+    };

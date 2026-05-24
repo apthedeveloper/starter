@@ -1,5 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:starter_project/core/config/app_config.dart';
+import 'package:starter_project/core/config/config.dart';
 
 class ProdConfig implements AppConfig {
   @override
@@ -13,4 +13,7 @@ class ProdConfig implements AppConfig {
 
   @override
   bool get enableLogging => false;
+
+   @override
+  int get projectId => dotenv.getInt('PROD_PROJECT_ID');
 }

@@ -4,8 +4,14 @@ enum ApiErrorType {
   server,
   unauthorized,
   cancelled,
+  notFound,
+  validation,
+  tooManyRequests,
+  forbidden,
   unknown,
-}class ApiException implements Exception {
+}
+
+class ApiException implements Exception {
   final String message;
   final int? statusCode;
   final ApiErrorType type;
@@ -24,9 +30,10 @@ enum ApiErrorType {
   String toString() {
     return '''
 ApiException:
-  type: $type
   statusCode: $statusCode
+  type: $type
   message: $message
+  raw: $raw
   stackTrace: $stackTrace
 ''';
   }

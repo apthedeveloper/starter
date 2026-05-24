@@ -1,12 +1,13 @@
 import 'package:starter_project/bootstrap/flavor.dart';
-import 'package:starter_project/core/config/dev_config.dart';
-import 'package:starter_project/core/config/prod_config.dart';
-import 'package:starter_project/core/config/staging_config.dart';
+import 'package:starter_project/core/config/dev.config.dart';
+import 'package:starter_project/core/config/prod.config.dart';
+import 'package:starter_project/core/config/staging.config.dart';
 
 abstract class AppConfig {
   String get appName;
   String get baseUrl;
   String get apiKey;
+  int get projectId;
   bool get enableLogging;
 }
 final class AppEnvironment {

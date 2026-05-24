@@ -1,6 +1,6 @@
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:starter_project/core/config/app_config.dart';
+import 'package:starter_project/core/config/config.dart';
 
 class StagingConfig implements AppConfig {
   @override
@@ -14,4 +14,7 @@ class StagingConfig implements AppConfig {
 
   @override
   bool get enableLogging => true;
+
+   @override
+  int get projectId => dotenv.getInt('STAGING_PROJECT_ID');
 }

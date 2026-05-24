@@ -16,11 +16,13 @@ enum ButtonType {
 enum ButtonSize { small, medium, large }
 
 class AppButton extends StatelessWidget {
-  final String text;
+  final String? text;
+  final IconData? icon;
   final VoidCallback? onPressed;
 
   final ButtonType type;
   final ButtonSize size;
+  final double? elevation;
 
   final bool isLoading;
   final bool isDisabled;
@@ -41,7 +43,8 @@ class AppButton extends StatelessWidget {
 
   const AppButton({
     super.key,
-    required this.text,
+    this.text,
+    this.icon,
     required this.onPressed,
     this.type = ButtonType.primary,
     this.size = ButtonSize.medium,
@@ -50,6 +53,7 @@ class AppButton extends StatelessWidget {
     this.fullWidth = true,
     this.leading,
     this.trailing,
+    this.elevation,
     this.backgroundColor,
     this.foregroundColor,
     this.border,
@@ -58,7 +62,14 @@ class AppButton extends StatelessWidget {
     this.height,
     this.padding,
     this.borderRadius,
-  });
+  }) : assert(
+         text != null || icon != null,
+         'Either text or icon must be provided',
+       ),
+       assert(
+         text == null || icon == null,
+         'Only one of text or icon can be provided',
+       );
 
   bool get _isEnabled => !isDisabled && !isLoading && onPressed != null;
 
@@ -172,10 +183,12 @@ class AppButton extends StatelessWidget {
           foregroundColor: WidgetStatePropertyAll(
             foregroundColor ?? _variantForeground(context),
           ),
+          elevation: WidgetStatePropertyAll(elevation),
           padding: WidgetStatePropertyAll(padding ?? _sizePadding()),
           side: (border ?? _variantBorder(context)) != null
               ? WidgetStatePropertyAll(border ?? _variantBorder(context)!)
               : null,
+         
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: borderRadius ?? BorderRadius.circular(12),
@@ -202,15 +215,21 @@ class AppButton extends StatelessWidget {
       );
     }
 
-    final textWidget = Text(text, style: _textStyle(context));
+    final mainWidget = text != null
+        ? Text(text!, style: _textStyle(context))
+        : Icon(
+            icon,
+            color: foregroundColor ?? _variantForeground(context),
+            size: AppSpacing.xl,
+          );
 
-    if (leading == null && trailing == null) return textWidget;
+    if (leading == null && trailing == null) return mainWidget;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         if (leading != null) ...[leading!, const SizedBox(width: 8)],
-        textWidget,
+        mainWidget,
         if (trailing != null) ...[const SizedBox(width: 8), trailing!],
       ],
     );

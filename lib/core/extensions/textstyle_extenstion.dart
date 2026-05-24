@@ -18,6 +18,6 @@ extension TextStyleExtension on TextStyle {
   TextStyle decreaseLetterSpacing(int value) =>
       copyWith(letterSpacing: (letterSpacing ?? 12) - value);
 
-        TextStyle color(Color c) => copyWith(color: c);
+  TextStyle colour(Color c) => copyWith(color: c);
   TextStyle size(double s) => copyWith(fontSize: s);
 }

@@ -1,5 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'app_config.dart';
+import 'config.dart';
 
 final class DevConfig implements AppConfig {
   @override
@@ -13,4 +13,7 @@ final class DevConfig implements AppConfig {
 
   @override
   bool get enableLogging => true;
+
+  @override
+  int get projectId => dotenv.getInt('DEV_PROJECT_ID');
 }
