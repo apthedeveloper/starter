@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
 import 'package:starter_project/shared/widgets/selection/app_selectable.dart';
@@ -29,25 +30,22 @@ class AppSelectableCard<V> extends StatelessWidget {
       onTap: () => controller.toggle(item.id, single: single),
       child: Row(
         children: [
-          AnimatedContainer(
+     QuickContainer(
+        animated: true,
             duration: const Duration(milliseconds: 150),
-            width: 20,
-            height: 20,
-            padding: isSelected ? EdgeInsets.all(3) : EdgeInsets.zero,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
+            w: 20,
+            h: 20,
+            p: isSelected ? 3: 0,
+              shape: .circle,
               border: Border.all(
                 color: isSelected ? colors.primary : colors.borderLight,
               ),
               color: AppColors.white,
-            ),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
+            child: QuickContainer(
+              w: double.infinity,
+              h: double.infinity,
+                shape: .circle,
                 color: isSelected ? colors.primary : Colors.transparent,
-              ),
             ),
           ),
           12.w,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 import 'package:starter_project/app/theme/colors/app_colors.dart';
@@ -53,14 +54,14 @@ class AppPopup {
             buttons ??
             [
               AppButton(
-                text: "Cancel",
+                text: context.localizations.cancel,
                 type: ButtonType.secondaryOff,
                 onPressed: () {
                   _close(PopupResult(action: PopupAction.cancel), context);
                 },
               ),
               AppButton(
-                text: "Confirm",
+                text: context.localizations.confirm,
                 type: ButtonType.primary,
                 onPressed: () {
                   _close(PopupResult(action: PopupAction.confirm), context);
@@ -86,21 +87,21 @@ class AppPopup {
   static Future<PopupResult?> showExitConfirmation(BuildContext context) {
     return show(
       context: context,
-      title: 'Exit App',
+      title: context.localizations.exitApp,
       message:
-          'Are you sure you want to leave? Any unsaved changes will be lost.',
+          context.localizations.areYouSureYouWantToLeaveAnyUnsavedChangesWillBeLost,
       icon: Icons.logout_rounded,
       variant: PopupVariant.danger,
       buttons: [
         AppButton(
-          text: "Cancel",
+          text: context.localizations.cancel,
           type: ButtonType.secondaryOff,
           onPressed: () {
             _close(PopupResult(action: PopupAction.cancel), context);
           },
         ),
         AppButton(
-          text: "Exit",
+          text: context.localizations.exit,
           type: ButtonType.danger,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -113,24 +114,24 @@ class AppPopup {
   // ── Predefined: Delete Confirmation ─────────────────────────────────────────
   static Future<PopupResult?> showDeleteConfirmation(
     BuildContext context, {
-    String deleteItemName = 'this item',
+    String? deleteItemName,
   }) {
     return show(
       context: context,
-      title: 'Delete $deleteItemName',
-      message: 'This action cannot be undone. Are you absolutely sure?',
+      title: 'Delete ${deleteItemName??context.localizations.thisItem}',
+      message: context.localizations.thisActionCannotBeUndoneAreYouAbsolutelySure,
       icon: Icons.delete_outline_rounded,
       variant: PopupVariant.danger,
       buttons: [
         AppButton(
-          text: "Keep",
+          text: context.localizations.keep,
           type: ButtonType.secondaryOff,
           onPressed: () {
             _close(PopupResult(action: PopupAction.cancel), context);
           },
         ),
         AppButton(
-          text: "Delete",
+          text:context.localizations.delete,
           type: ButtonType.danger,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -146,7 +147,7 @@ class AppPopup {
     BuildContext context, {
     required String title,
     String? message,
-    String buttonLabel = 'Great!',
+    String? buttonLabel,
   }) async {
     await show(
       context: context,
@@ -157,7 +158,7 @@ class AppPopup {
       showCloseButton: false,
       buttons: [
         AppButton(
-          text: buttonLabel,
+          text: buttonLabel??context.localizations.great,
           type: ButtonType.success,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -172,8 +173,8 @@ class AppPopup {
     BuildContext context, {
     required String title,
     String? message,
-    String confirmLabel = 'Proceed',
-    String cancelLabel = 'Go Back',
+    String? confirmLabel,
+    String? cancelLabel,
   }) {
     return show(
       context: context,
@@ -183,14 +184,14 @@ class AppPopup {
       variant: PopupVariant.warning,
       buttons: [
         AppButton(
-          text: cancelLabel,
+          text: cancelLabel??context.localizations.goBack,
           type: ButtonType.secondaryOff,
           onPressed: () {
             _close(PopupResult(action: PopupAction.cancel), context);
           },
         ),
         AppButton(
-          text: confirmLabel,
+          text: confirmLabel?? context.localizations.proceed,
           type: ButtonType.warning,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -205,7 +206,7 @@ class AppPopup {
     BuildContext context, {
     required String title,
     String? message,
-    String buttonLabel = 'Got it',
+    String? buttonLabel,
   }) async {
     await show(
       context: context,
@@ -216,7 +217,7 @@ class AppPopup {
       showCloseButton: false,
       buttons: [
         AppButton(
-          text: buttonLabel,
+          text: buttonLabel?? context.localizations.gotIt,
           type: ButtonType.info,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -230,20 +231,20 @@ class AppPopup {
   static Future<PopupResult?> showLogoutConfirmation(BuildContext context) {
     return show(
       context: context,
-      title: 'Log Out',
-      message: 'You will be signed out of your account.',
+      title: context.localizations.logOut,
+      message: context.localizations.youWillBeSignedOutOfYourAccount,
       icon: Icons.person_off_outlined,
       variant: PopupVariant.danger,
       buttons: [
         AppButton(
-          text: "Cancel",
+          text: context.localizations.cancel,
           type: ButtonType.secondaryOff,
           onPressed: () {
             _close(PopupResult(action: PopupAction.cancel), context);
           },
         ),
         AppButton(
-          text: "Log Out",
+          text: context.localizations.logOut,
           type: ButtonType.danger,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -363,9 +364,9 @@ class _AppPopupWidgetState extends State<_AppPopupWidget>
     return Center(
       child: Material(
         color: AppColors.transparent,
-        child: Container(
-          width: size.width * 0.88,
-          constraints: const BoxConstraints(maxWidth: 420),
+        child: QuickContainer(
+          w: size.width * 0.88,
+          maxW: 420,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -398,27 +399,25 @@ class _AppPopupWidgetState extends State<_AppPopupWidget>
   // ── Card body ────────────────────────────────────────────────────────────────
   Widget _buildCard(bool isDark, BuildContext context) {
     final hasIcon = widget.icon != null || widget.customIcon != null;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        color: isDark ? context.colors.backgroundDark : context.colors.surface,
-        boxShadow: [
-          BoxShadow(
-            color: _accentColor.withValues(alpha: 0.18),
-            blurRadius: 40,
-            spreadRadius: -4,
-            offset: const Offset(0, 20),
-          ),
-          BoxShadow(
-            color: context.colors.backgroundLight.withValues(alpha: 0.12),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-        border: Border.all(
-          color: _accentColor.withValues(alpha: 0.15),
-          width: 1.5,
+    return QuickContainer(
+      borderRadius: BorderRadius.circular(28),
+      color: isDark ? context.colors.backgroundDark : context.colors.surface,
+      shadows: [
+        BoxShadow(
+          color: _accentColor.withValues(alpha: 0.18),
+          blurRadius: 40,
+          spreadRadius: -4,
+          offset: const Offset(0, 20),
         ),
+        BoxShadow(
+          color: context.colors.backgroundLight.withValues(alpha: 0.12),
+          blurRadius: 20,
+          offset: const Offset(0, 8),
+        ),
+      ],
+      border: Border.all(
+        color: _accentColor.withValues(alpha: 0.15),
+        width: 1.5,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(28),
@@ -476,28 +475,26 @@ class _AppPopupWidgetState extends State<_AppPopupWidget>
       builder: (_, _) {
         final value = Curves.easeInOut.transform(_shimmerController.value);
 
-        return Container(
-          height: 4,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                _accentColor.withValues(alpha: 0.15),
-                _accentColor.withValues(alpha: 0.6),
-                _accentColor,
-                _accentColor.withValues(alpha: 0.6),
-                _accentColor.withValues(alpha: 0.15),
-              ],
-              stops: [
-                (value - 0.4).clamp(0.0, 1.0),
-                (value - 0.2).clamp(0.0, 1.0),
-                value.clamp(0.0, 1.0),
-                (value + 0.2).clamp(0.0, 1.0),
-                (value + 0.4).clamp(0.0, 1.0),
-              ],
-            ),
+        return QuickContainer(
+          h: 4,
+          borderRadius: BorderRadius.circular(2),
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              _accentColor.withValues(alpha: 0.15),
+              _accentColor.withValues(alpha: 0.6),
+              _accentColor,
+              _accentColor.withValues(alpha: 0.6),
+              _accentColor.withValues(alpha: 0.15),
+            ],
+            stops: [
+              (value - 0.4).clamp(0.0, 1.0),
+              (value - 0.2).clamp(0.0, 1.0),
+              value.clamp(0.0, 1.0),
+              (value + 0.2).clamp(0.0, 1.0),
+              (value + 0.4).clamp(0.0, 1.0),
+            ],
           ),
         );
       },
@@ -507,21 +504,19 @@ class _AppPopupWidgetState extends State<_AppPopupWidget>
   // ── Floating icon bubble ─────────────────────────────────────────────────────
   Widget _buildIconBubble() {
     return Center(
-      child: Container(
-        width: 72,
-        height: 72,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _accentColor,
-          boxShadow: [
-            BoxShadow(
-              color: _accentColor.withValues(alpha: 0.45),
-              blurRadius: 20,
-              spreadRadius: 2,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
+      child: QuickContainer(
+        w: 72,
+        h: 72,
+        shape: .circle,
+        color: _accentColor,
+        shadows: [
+          BoxShadow(
+            color: _accentColor.withValues(alpha: 0.45),
+            blurRadius: 20,
+            spreadRadius: 2,
+            offset: const Offset(0, 6),
+          ),
+        ],
         child:
             widget.customIcon ??
             Icon(widget.icon, color: context.colors.onPrimary, size: 34),
@@ -533,16 +528,15 @@ class _AppPopupWidgetState extends State<_AppPopupWidget>
   Widget _buildCloseButton(bool isDark) {
     final colors = context.colors;
     return GestureDetector(
-      onTap: () => _close(PopupResult(action: PopupAction.dismiss)),
-      child: Container(
-        width: 32,
-        height: 32,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isDark
-              ? colors.onPrimary.withValues(alpha: 0.08)
-              : colors.backgroundDark.withValues(alpha: 0.06),
-        ),
+      onTap: () => _close(PopupResult(action: .dismiss)),
+      child: QuickContainer(
+        w: 32,
+        h: 32,
+        shape: .circle,
+        color: isDark
+            ? colors.onPrimary.withValues(alpha: 0.08)
+            : colors.backgroundDark.withValues(alpha: 0.06),
+
         child: Icon(
           Icons.close_rounded,
           size: 17,

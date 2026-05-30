@@ -1,111 +1,109 @@
+import 'package:flutter/widgets.dart';
+import 'package:starter_project/core/constants/app_regx.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
+
 final class Validators {
   Validators._();
 
   /// Required field
-  static String? required(String? value, {String fieldName = "This field"}) {
+  static String? required(BuildContext context, String? value, {String? fieldName}) {
     if (value == null || value.trim().isEmpty) {
-      return "$fieldName is required";
+      return context.localizations.fieldRequired(fieldName ?? context.localizations.thisField);
     }
     return null;
   }
 
   /// Email validation
-  static String? email(String? value) {
+  static String? email(BuildContext context, String? value) {
     if (value == null || value.trim().isEmpty) {
-      return "Email is required";
+      return context.localizations.emailRequired;
     }
 
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
-    if (!emailRegex.hasMatch(value.trim())) {
-      return "Enter a valid email";
+    if (!AppRegex.email.hasMatch(value.trim())) {
+      return context.localizations.enterValidEmail;
     }
 
     return null;
   }
 
   /// Password validation
-  static String? password(String? value, {int minLength = 6}) {
+  static String? password(BuildContext context, String? value, {int minLength = 6}) {
     if (value == null || value.isEmpty) {
-      return "Password is required";
+      return context.localizations.passwordRequired;
     }
 
     if (value.length < minLength) {
-      return "Password must be at least $minLength characters";
+      return context.localizations.passwordMinLengthError(minLength);
     }
 
     return null;
   }
 
   /// Strong password (optional advanced)
-  static String? strongPassword(String? value) {
+  static String? strongPassword(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {
-      return "Password is required";
+      return context.localizations.passwordRequired;
     }
 
-    final regex = RegExp(
-      r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$',
-    );
-
-    if (!regex.hasMatch(value)) {
-      return "Password must include upper, lower, number & special char";
+    if (!AppRegex.strongPassword.hasMatch(value)) {
+      return context.localizations.strongPasswordError;
     }
 
     return null;
   }
 
   /// Phone number (basic)
-  static String? phone(String? value) {
+  static String? phone(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {
-      return "Phone number is required";
+      return context.localizations.phoneRequired;
     }
 
     final phoneRegex = RegExp(r'^[0-9]{10}$');
 
     if (!phoneRegex.hasMatch(value)) {
-      return "Enter valid 10-digit phone number";
+      return context.localizations.enterValidPhone;
     }
 
     return null;
   }
 
   /// Min length
-  static String? minLength(String? value, int length) {
+  static String? minLength(BuildContext context, String? value, int length) {
     if (value == null || value.length < length) {
-      return "Minimum $length characters required";
+      return context.localizations.minLengthError(length);
     }
     return null;
   }
 
   /// Max length
-  static String? maxLength(String? value, int length) {
+  static String? maxLength(BuildContext context, String? value, int length) {
     if (value != null && value.length > length) {
-      return "Maximum $length characters allowed";
+      return context.localizations.maxLengthError(length);
     }
     return null;
   }
 
   /// Number validation
-  static String? number(String? value) {
+  static String? number(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {
-      return "This field is required";
+      return context.localizations.thisFieldRequired;
     }
 
     if (double.tryParse(value) == null) {
-      return "Enter a valid number";
+      return context.localizations.enterValidNumber;
     }
 
     return null;
   }
 
   /// Confirm password
-  static String? confirmPassword(String? value, String original) {
+  static String? confirmPassword(BuildContext context, String? value, String original) {
     if (value == null || value.isEmpty) {
-      return "Please confirm password";
+      return context.localizations.pleaseConfirmPassword;
     }
 
     if (value != original) {
-      return "Passwords do not match";
+      return context.localizations.passwordsDoNotMatch;
     }
 
     return null;

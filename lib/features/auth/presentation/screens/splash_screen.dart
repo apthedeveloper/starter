@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
-import 'package:starter_project/core/logger/app_logger.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -102,16 +102,15 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
+      body: QuickContainer(
+        w: double.infinity,
+        h: double.infinity,
+        gradient:  LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
               context.colors.primary,
-              context.colors.primary.withOpacity(0.85),
+              context.colors.primary.withValues(alpha:  0.85),
               Color.lerp(
                     context.colors.primary,
                     context.colors.secondary,
@@ -120,7 +119,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                   context.colors.primary,
             ],
           ),
-        ),
+        
         child: SafeArea(
           child: Column(
             children: [
@@ -143,7 +142,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 child: FadeTransition(
                   opacity: _titleFade,
                   child: Text(
-                    'Starter',
+                    context.localizations.appNameSplash,
                     style: context.textTheme.headlineLarge?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w800,
@@ -159,9 +158,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
               FadeTransition(
                 opacity: _subtitleFade,
                 child: Text(
-                  'Your journey starts here',
+                  context.localizations.tagline,
                   style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha:  0.7),
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -178,7 +177,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
                     valueColor: AlwaysStoppedAnimation(
-                      Colors.white.withOpacity(0.8),
+                      Colors.white.withValues(alpha:  0.8),
                     ),
                   ),
                 ),
@@ -192,7 +191,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 child: Text(
                   '© ${DateTime.now().year}',
                   style: context.textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withOpacity(0.4),
+                    color: Colors.white.withValues(alpha:  0.4),
                   ),
                 ),
               ),
@@ -209,37 +208,33 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     return AnimatedBuilder(
       animation: _shimmerController,
       builder: (context, child) {
-        return Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
+        return QuickContainer(
+          w: 120,
+          h: 120,
+            shape: .circle,
             border: Border.all(
-              color: Colors.white.withOpacity(
+              color: Colors.white.withValues(alpha:  
                 0.2 + 0.15 * _shimmerController.value,
               ),
               width: 2.5,
             ),
-            boxShadow: [
+            shadows: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.15),
+                color: Colors.black.withValues(alpha:  0.15),
                 blurRadius: 30,
                 spreadRadius: 5,
               ),
               BoxShadow(
-                color: context.colors.secondary.withOpacity(
+                color: context.colors.secondary.withValues(alpha:  
                   0.15 * (1 - _shimmerController.value),
                 ),
                 blurRadius: 40,
                 spreadRadius: 10,
               ),
             ],
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white.withOpacity(0.15),
-            ),
+          child: QuickContainer(
+              shape: .circle,
+              color: Colors.white.withValues(alpha:  0.15),
             child: const Icon(
               Icons.rocket_launch_rounded,
               size: 52,

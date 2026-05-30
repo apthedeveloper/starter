@@ -14,12 +14,12 @@ class AuthState {
 
   AuthState copyWith({
     ApiState<User?>? userState,
-    bool? otherLoader,
+    bool? secondaryLoader,
     bool? isInitializing,
   }) {
     return AuthState(
       userState: userState ?? this.userState,
-      secondaryLoader: otherLoader ?? this.secondaryLoader,
+      secondaryLoader: secondaryLoader ?? this.secondaryLoader,
       isInitializing: isInitializing ?? this.isInitializing,
     );
   }

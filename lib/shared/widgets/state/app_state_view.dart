@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 
 enum AppViewType { empty, error }
@@ -41,16 +42,16 @@ class AppStateView extends StatelessWidget {
 
     final resolvedMessage =
         message ??
-        (type == AppViewType.error ? "Something went wrong" : "No data found");
+        (type == AppViewType.error ? context.localizations.somethingWentWrong : context.localizations.noDataFound);
 
     final resolvedSubtitle =
         subtitle ??
         (type == AppViewType.error
-            ? "Please try again"
-            : "Try refreshing or check back later");
+            ? context.localizations.pleaseTryAgain
+            : context.localizations.tryRefreshingOrCheckBackLater);
 
     final resolvedActionText =
-        actionText ?? (type == AppViewType.error ? "Retry" : "Refresh");
+        actionText ?? (type == AppViewType.error ? context.localizations.retry : context.localizations.refresh);
 
     return Center(
       child: Padding(

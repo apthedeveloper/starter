@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/constants/app_spacing.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
@@ -139,19 +140,18 @@ class _AppDropdownState extends State<AppDropdown> {
                       ),
                     );
                   },
-                  child: Container(
-                    width:
+                  child: QuickContainer(
+                    w:
                         (fieldKey.currentContext?.findRenderObject()
                                 as RenderBox?)
                             ?.size
                             .width,
-                    constraints: const BoxConstraints(maxHeight: 260),
+                            maxH: 260,
 
-                    decoration: BoxDecoration(
                       color: context.colors.surface,
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(color: context.colors.borderLight),
-                      boxShadow: [
+                      shadows: [
                         BoxShadow(
                           color: context.colors.onSurface.withValues(
                             alpha: 0.08,
@@ -160,7 +160,6 @@ class _AppDropdownState extends State<AppDropdown> {
                           offset: const Offset(0, 6),
                         ),
                       ],
-                    ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(14),
                       child: Column(
@@ -177,7 +176,7 @@ class _AppDropdownState extends State<AppDropdown> {
                                 controller: searchController,
                                 focusNode: searchFocusNode,
                                 decoration: InputDecoration(
-                                  hintText: 'Search item',
+                                  hintText: context.localizations.searchItem,
                                 ),
                                 onChanged: _search,
                               ),
@@ -247,11 +246,9 @@ class _AppDropdownState extends State<AppDropdown> {
                                               widget.dropdownItemChild?.call(
                                                 isSelected,
                                               ) ??
-                                              Container(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: AppSpacing.md,
-                                                  vertical: AppSpacing.sm,
-                                                ),
+                                              QuickContainer(
+                                                  px: AppSpacing.md,
+                                                  py: AppSpacing.sm,
                                                 child: Row(
                                                   children: [
                                                     AnimatedSwitcher(

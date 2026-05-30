@@ -76,6 +76,10 @@ class AppButton extends StatelessWidget {
   Color _variantBackground(BuildContext context) {
     final colors = context.colors;
 
+    if (!_isEnabled) {
+      return context.colors.borderLight;
+    }
+
     switch (type) {
       case ButtonType.primary:
         return colors.primary;
@@ -99,6 +103,10 @@ class AppButton extends StatelessWidget {
   Color _variantForeground(BuildContext context) {
     final colors = context.colors;
 
+    if (!_isEnabled) {
+      return context.colors.onSurfaceSecondary;
+    }
+
     switch (type) {
       case ButtonType.primary:
         return colors.onPrimary;
@@ -120,6 +128,9 @@ class AppButton extends StatelessWidget {
   }
 
   BorderSide? _variantBorder(BuildContext context) {
+    if (!_isEnabled) {
+      return BorderSide(color: context.colors.onSurfaceSecondary);
+    }
     if (type == ButtonType.secondaryPrimary) {
       return BorderSide(color: context.colors.primary);
     }
@@ -188,7 +199,7 @@ class AppButton extends StatelessWidget {
           side: (border ?? _variantBorder(context)) != null
               ? WidgetStatePropertyAll(border ?? _variantBorder(context)!)
               : null,
-         
+
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: borderRadius ?? BorderRadius.circular(12),

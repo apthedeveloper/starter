@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/shared/states/pagination_state.dart';
 
 class AppPagination<T> extends StatefulWidget {
@@ -67,16 +68,14 @@ class _AppPaginationState<T> extends State<AppPagination<T>> {
 
     if (position.pixels >=
         position.maxScrollExtent - position.viewportDimension * 0.2) {
-      print(
-        "${position.maxScrollExtent}.  ${position.viewportDimension * 0.2}",
-      );
       await _loadMore();
     }
   }
 
   Future<void> _loadMore() async {
-    if (_isFetchingMore || widget.state.isLoading || widget.state.isLastPage)
+    if (_isFetchingMore || widget.state.isLoading || widget.state.isLastPage) {
       return;
+    }
     try {
       _isFetchingMore = true;
       await widget.onLoadMore?.call();
@@ -107,9 +106,9 @@ class _AppPaginationState<T> extends State<AppPagination<T>> {
     /// Footer
     if (state.hasLoadMoreError) {
       return widget.loadMoreErrorBuilder?.call(context) ??
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Center(child: Text("Failed to load more")),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Center(child: Text(context.localizations.failedToLoadMore)),
           );
     }
 
@@ -145,7 +144,7 @@ class _AppPaginationState<T> extends State<AppPagination<T>> {
     /// Error
     if (state.items.isEmpty && state.hasError) {
       return widget.errorBuilder?.call(context) ??
-          const Center(child: Text("Something went wrong"));
+          Center(child: Text(context.localizations.somethingWentWrong));
     }
 
     /// Empty
@@ -160,7 +159,7 @@ class _AppPaginationState<T> extends State<AppPagination<T>> {
               child: Center(
                 child:
                     widget.emptyBuilder?.call(context) ??
-                    const Text("No data found"),
+                    Text(context.localizations.noDataFound),
               ),
             ),
           ],

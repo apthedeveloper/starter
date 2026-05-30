@@ -16,16 +16,16 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             100.h,
-            Text("Login", style: context.textTheme.headlineLarge),
+            Text(context.localizations.loginTitle, style: context.textTheme.headlineLarge),
             20.h,
 
             AuthForm(),
             30.h,
             AppRichText(
               spans: [
-                AppTextSpan(text: "If you don't have any account"),
+                AppTextSpan(text: context.localizations.dontHaveAccountText),
                 AppTextSpan(
-                  text: "Signup",
+                  text: context.localizations.signup,
                   onTap: () {
                     context.pushNamed(AppRoutes.signup);
                   },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
+import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
 
 enum AppTextFieldType { normal, password, search, date, dropDown }
 
@@ -42,6 +44,7 @@ class AppTextField extends StatefulWidget {
   // ================= CALLBACKS =================
   final ValueChanged<String>? onChanged;
   final VoidCallback? onTap;
+  final VoidCallback? onFocus;
   final FormFieldValidator<String>? validator;
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onFieldSubmitted;
@@ -79,6 +82,7 @@ class AppTextField extends StatefulWidget {
     this.inputFormatters,
     this.autofillHints,
     this.onChanged,
+    this.onFocus,
     this.onTap,
     this.validator,
     this.onSaved,
@@ -106,6 +110,13 @@ class _AppTextFieldState extends State<AppTextField> {
   void initState() {
     super.initState();
     _obscureText = _isPassword;
+    if (widget.onFocus != null) {
+      widget.focusNode?.addListener(() {
+        if (widget.focusNode?.hasFocus ?? false) {
+          widget.onFocus?.call();
+        }
+      });
+    }
   }
 
   void _togglePasswordVisibility() {
@@ -120,6 +131,9 @@ class _AppTextFieldState extends State<AppTextField> {
 
     if (_isSearch) {
       return const Icon(Icons.search);
+    }
+    if (_isDate) {
+      return const Icon(Icons.calendar_today_outlined);
     }
 
     return widget.decoration?.prefixIcon;
@@ -151,11 +165,8 @@ class _AppTextFieldState extends State<AppTextField> {
             )
           : userSuffix;
     }
-    if(_isDropdown){
+    if (_isDropdown) {
       return const Icon(Icons.arrow_drop_down);
-    }
-    if (_isDate) {
-      return const Icon(Icons.calendar_today_outlined);
     }
 
     return null;
@@ -235,6 +246,9 @@ class _AppTextFieldState extends State<AppTextField> {
       suffix: userDecoration?.suffix,
       suffixIcon: _buildSuffixIcon(),
       prefixText: userDecoration?.prefixText,
+
+      prefixIconConstraints: userDecoration?.prefixIconConstraints,
+      suffixIconConstraints: userDecoration?.suffixIconConstraints,
       suffixText: userDecoration?.suffixText,
       filled: userDecoration?.filled,
       fillColor: userDecoration?.fillColor,
@@ -260,7 +274,14 @@ class _AppTextFieldState extends State<AppTextField> {
       textInputAction: _resolveTextInputAction(),
       textCapitalization: widget.textCapitalization,
       textAlign: widget.textAlign,
-      style: widget.style,
+      textAlignVertical: widget.maxLines != 1
+          ? TextAlignVertical.top
+          : TextAlignVertical.center,
+      style: widget.enabled
+          ? widget.style ?? context.textTheme.bodyMedium
+          : context.textTheme.bodyMedium?.colour(
+              context.colors.onSurfaceSecondary,
+            ),
       strutStyle: widget.strutStyle,
       obscureText: _obscureText,
       readOnly: _effectiveReadOnly,
@@ -283,7 +304,9 @@ class _AppTextFieldState extends State<AppTextField> {
       onFieldSubmitted: widget.onFieldSubmitted,
       onEditingComplete: widget.onEditingComplete,
       decoration: _buildDecoration(context),
-      onTapOutside: (_) => widget.onOutsideTap?.call(),
+      onTapOutside: (_) => widget.onOutsideTap != null
+          ? widget.onOutsideTap!()
+          : FocusManager.instance.primaryFocus?.unfocus(),
     );
   }
 }

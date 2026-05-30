@@ -1,3 +1,5 @@
+// ignore_for_file: use_null_aware_elements
+
 import 'package:url_launcher/url_launcher.dart';
 
 final class AppLauncher {
@@ -45,8 +47,11 @@ final class AppLauncher {
   }) async {
     final uri = Uri(
       scheme: 'mailto',
-      path: email.isEmpty? null: email,
-      queryParameters: {if(subject != null) 'subject': subject,  if(body != null) 'body': body},
+      path: email.isEmpty ? null : email,
+      queryParameters: {
+        if (subject != null) 'subject': subject,
+        if (body != null) 'body': body,
+      },
     );
 
     return launchUrl(uri);
@@ -70,7 +75,7 @@ final class AppLauncher {
     final uri = Uri(
       scheme: 'sms',
       path: phoneNumber,
-      queryParameters: {if(message!=null) 'body': message},
+      queryParameters: {if (message != null) 'body': message},
     );
 
     return launchUrl(uri);

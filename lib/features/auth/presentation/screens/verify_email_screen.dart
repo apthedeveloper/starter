@@ -1,34 +1,42 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quick_container/quick_container.dart';
+import 'package:starter_project/core/constants/app_constants.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
 import 'package:starter_project/app/layout/app_layout.dart';
 import 'package:starter_project/core/extensions/string.extenstion.dart';
-import 'package:starter_project/core/logger/app_logger.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
-import 'package:starter_project/shared/services/app_launcher_services.dart';
 import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 import 'package:starter_project/shared/widgets/Misc/app_rich_text.dart';
 import 'package:starter_project/app/routes/app_routes.dart';
 
-class VerifyEmailScreen extends StatefulWidget {
+class VerifyEmailScreen extends ConsumerStatefulWidget {
   const VerifyEmailScreen({super.key});
 
   @override
-  State<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
+  ConsumerState<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
 }
 
-class _VerifyEmailScreenState extends State<VerifyEmailScreen>
+class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animController;
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _fadeAnimation;
 
+  final resendSecondsNotifier = ValueNotifier<int>(0);
+  Timer? _resendTimer;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(authControllerProvider.notifier).sendVerificationEmail();
+      startResendCooldown();
+    });
     _animController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
@@ -47,9 +55,26 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
     _animController.forward();
   }
 
+  void startResendCooldown() {
+    resendSecondsNotifier.value = AppConstants.resendSeconds;
+
+    _resendTimer?.cancel();
+
+    _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (resendSecondsNotifier.value <= 1) {
+        timer.cancel();
+        resendSecondsNotifier.value = 0;
+        return;
+      }
+
+      resendSecondsNotifier.value--;
+    });
+  }
+
   @override
   void dispose() {
     _animController.dispose();
+    _resendTimer?.cancel();
     super.dispose();
   }
 
@@ -66,13 +91,11 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               // — Animated icon —
               ScaleTransition(
                 scale: _scaleAnimation,
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: context.colors.primary.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
+                child: QuickContainer(
+                  w: 120,
+                  h: 120,
+                  color: context.colors.primary.withValues(alpha: 0.1),
+                  shape: .circle,
                   child: Icon(
                     Icons.mark_email_unread_rounded,
                     size: 56,
@@ -87,7 +110,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: Text(
-                  'Check Your Email',
+                  context.localizations.checkYourEmail,
                   style: context.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -101,7 +124,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: Text(
-                  'We\'ve sent a verification link to',
+                  context.localizations.sentVerificationLink,
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: context.colors.onSurfaceSecondary,
                   ),
@@ -112,8 +135,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               6.h,
 
               // — Email address —
-              Consumer(
-                builder: (context, ref, child) {
+              Builder(
+                builder: (context) {
                   final email =
                       ref.read(authControllerProvider).userState.data?.email ??
                       '';
@@ -137,15 +160,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               // — Info box —
               FadeTransition(
                 opacity: _fadeAnimation,
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: context.colors.infoLight.withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: context.colors.info.withValues(alpha: 0.2),
-                    ),
+                child: QuickContainer(
+                  p: 16,
+                  color: context.colors.infoLight.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: context.colors.info.withValues(alpha: 0.2),
                   ),
+
                   child: Row(
                     children: [
                       Icon(
@@ -156,7 +178,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
                       12.w,
                       Expanded(
                         child: Text(
-                          'Please check your inbox and tap the verification link to continue.',
+                          context.localizations.checkInboxInstructions,
                           style: context.textTheme.bodySmall?.copyWith(
                             color: context.colors.onSurface,
                             height: 1.4,
@@ -171,21 +193,29 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               const Spacer(flex: 1),
 
               // — Resend email button —
-              Consumer(
-                builder: (context, ref, child) {
+              ValueListenableBuilder<int>(
+                valueListenable: resendSecondsNotifier,
+                builder: (_, resendSeconds, _) {
                   final isLoading = ref.watch(
                     authControllerProvider.select((e) => e.secondaryLoader),
                   );
 
                   return AppButton(
-                    text: 'Resend Email',
+                    text: resendSeconds == 0
+                        ? context.localizations.resendEmail
+                        : context.localizations.resendEmailWithSeconds(
+                            resendSeconds,
+                          ),
                     type: ButtonType.secondaryPrimary,
                     isLoading: isLoading,
-                    onPressed: () {
-                      ref
-                          .read(authControllerProvider.notifier)
-                          .sendVerificationEmail();
-                    },
+                    onPressed: resendSeconds != 0
+                        ? null
+                        : () {
+                            ref
+                                .read(authControllerProvider.notifier)
+                                .sendVerificationEmail();
+                            startResendCooldown();
+                          },
                   );
                 },
               ),
@@ -193,14 +223,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
               12.h,
 
               // — Continue button (after email verified) —
-              Consumer(
-                builder: (context, ref, child) {
+              Builder(
+                builder: (_) {
                   final isLoading = ref.watch(
                     authControllerProvider.select((e) => e.userState.isLoading),
                   );
 
                   return AppButton(
-                    text: 'Continue',
+                    text: context.localizations.continueBtn,
                     isLoading: isLoading,
                     onPressed: () async {
                       final isVerified = await ref
@@ -222,9 +252,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen>
                 builder: (context, ref, child) {
                   return AppRichText(
                     spans: [
-                      AppTextSpan(text: 'Wrong email? '),
+                      AppTextSpan(text: context.localizations.wrongEmailText),
                       AppTextSpan(
-                        text: 'Go Back',
+                        text: context.localizations.goBack,
                         onTap: () {
                           ref.read(authControllerProvider.notifier).logout();
                         },

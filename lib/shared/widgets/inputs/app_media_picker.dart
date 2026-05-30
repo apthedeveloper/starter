@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
 import 'package:starter_project/shared/services/media_selector_service.dart';
@@ -31,10 +33,10 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
         children: [
           _buildOptionTile(
             icon: Icons.photo_library_rounded,
-            title: "Choose from Gallery",
+            title: context.localizations.chooseFromGallery,
             subtitle: widget.isVideo
-                ? "Select from your video library"
-                : "Select from your photo library",
+                ? context.localizations.selectFromYourVideoLibrary
+                : context.localizations.selectFromYourPhotoLibrary,
             onTap: () async { 
               final pickedFile = widget.isVideo
                   ? await MediaPickerService.pickVideo(ImageSourceType.gallery)
@@ -47,8 +49,8 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
           const SizedBox(height: 12),
           _buildOptionTile(
             icon: Icons.camera_alt_rounded,
-            title: "Take a Photo",
-            subtitle: "Use camera to capture new image",
+            title: context.localizations.takeAPhoto,
+            subtitle: context.localizations.useCameraToCaptureNewImage,
             onTap: () async { 
               final pickedFile = widget.isVideo
                   ? await MediaPickerService.pickVideo(ImageSourceType.camera)
@@ -74,21 +76,18 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
+        child: QuickContainer(
+p:16,
             color: context.colors.borderLight,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: context.colors.primary.withValues(alpha: 0.2),
             ),
-          ),
           child: Row(
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
+              QuickContainer(
+                w: 48,
+                h: 48,
                   gradient: LinearGradient(
                     colors: [
                       context.colors.primary.withValues(alpha: 0.9),
@@ -96,7 +95,7 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
                     ],
                   ),
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
+                  shadows: [
                     BoxShadow(
                       color: context.colors.backgroundLight.withValues(
                         alpha: 0.2,
@@ -105,7 +104,7 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
                       offset: const Offset(0, 4),
                     ),
                   ],
-                ),
+                
                 child: Icon(icon, color: context.colors.surface, size: 24),
               ),
               const SizedBox(width: 16),

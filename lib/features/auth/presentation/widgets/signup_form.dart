@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
 import 'package:starter_project/app/layout/app_layout.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
@@ -52,16 +53,16 @@ class _AuthFormState extends State<AuthForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppFieldLabel(text: "Email"),
+            AppFieldLabel(text: context.localizations.emailLabel),
             2.h,
             AppTextField(
               controller: emailController,
               decoration: InputDecoration(
-                hintText: "Email",
+                hintText: context.localizations.emailHint,
                 prefixIcon: Icon(Icons.email),
               ),
               autofillHints: [AutofillHints.email],
-              validator: (value) => Validators.email(value),
+              validator: (value) => Validators.email(context, value),
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (value) {
                 FocusScope.of(context).requestFocus(passwordFocusNode);
@@ -69,19 +70,19 @@ class _AuthFormState extends State<AuthForm> {
             ),
             8.h,
 
-            AppFieldLabel(text: "Password"),
+            AppFieldLabel(text: context.localizations.passwordLabel),
             2.h,
 
             AppTextField(
               controller: passwordController,
               type: AppTextFieldType.password,
               decoration: InputDecoration(
-                hintText: "Password",
+                hintText: context.localizations.passwordHint,
                 prefixIcon: Icon(Icons.lock),
               ),
               textInputAction: TextInputAction.done,
               autofillHints: [AutofillHints.password],
-              validator: (value) => Validators.password(value),
+              validator: (value) => Validators.password(context, value),
               onFieldSubmitted: (value) {
                 FocusScope.of(context).unfocus();
               },
@@ -95,7 +96,7 @@ class _AuthFormState extends State<AuthForm> {
                   authControllerProvider.select((s) => s.userState.isLoading),
                 );
                 return AppButton(
-                  text: widget.isSignup?  "Signup": "Login",
+                  text: widget.isSignup ? context.localizations.signup : context.localizations.login,
                   isLoading: isLoading,
                   onPressed: () async {
                     if (!(formKey.currentState?.validate() ?? false)) return;

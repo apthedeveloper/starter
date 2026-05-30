@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:starter_project/core/config/config.dart';
 import 'package:starter_project/core/error/api_exception.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 
 enum HttpMethod { get, post, put, delete }
 
@@ -87,7 +88,7 @@ final class ApiClient {
 
       if (response.statusCode != null && response.statusCode! >= 400) {
         throw ApiException(
-          response.data?["message"] ?? "Request failed",
+          response.data?["message"] ?? AppLocalizationsEn().requestFailed,
           statusCode: response.statusCode,
         );
       }
@@ -96,7 +97,7 @@ final class ApiClient {
         return onResponse(response);
       } catch (e, stack) {
         throw ApiException(
-          "Failed to parse response",
+          AppLocalizationsEn().failedToParseResponse,
           type: ApiErrorType.unknown,
           raw: {'local': e, 'remote': response.data},
           stackTrace: stack,
@@ -150,21 +151,21 @@ final class ApiClient {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.sendTimeout:
         return ApiException(
-          "Connection timeout",
+          AppLocalizationsEn().connectionTimeout,
           type: ApiErrorType.timeout,
           stackTrace: stack,
         );
 
       case DioExceptionType.cancel:
         return ApiException(
-          "Request cancelled",
+          AppLocalizationsEn().requestCancelled,
           type: ApiErrorType.cancelled,
           stackTrace: stack,
         );
 
       case DioExceptionType.connectionError:
         return ApiException(
-          "No internet connection",
+          AppLocalizationsEn().noInternetConnection,
           type: ApiErrorType.network,
           stackTrace: stack,
         );
@@ -172,7 +173,7 @@ final class ApiClient {
       case DioExceptionType.badResponse:
         final statusCode = e.response?.statusCode;
 
-        String message = "Server error";
+        String message = AppLocalizationsEn().serverError;
         final data = e.response?.data;
 
         if (data is Map) {
@@ -193,7 +194,7 @@ final class ApiClient {
 
       default:
         return ApiException(
-          "Unexpected error",
+          AppLocalizationsEn().unexpectedError,
           type: ApiErrorType.unknown,
           stackTrace: stack,
         );

@@ -16,16 +16,16 @@ class SignupScreen extends StatelessWidget {
         child: Column(
           children: [
             100.h,
-            Text("Sign Up", style: context.textTheme.headlineLarge),
+            Text(context.localizations.signUpTitle, style: context.textTheme.headlineLarge),
             20.h,
 
             AuthForm(isSignup: true),
             30.h,
             AppRichText(
               spans: [
-                AppTextSpan(text: "If you have any account"),
+                AppTextSpan(text: context.localizations.haveAccountText),
                 AppTextSpan(
-                  text: "Login",
+                  text: context.localizations.login,
                   onTap: () {
                     context.pushNamed(AppRoutes.login);
                   },

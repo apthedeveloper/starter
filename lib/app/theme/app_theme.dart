@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:starter_project/core/constants/app_spacing.dart';
 import 'package:starter_project/app/theme/app_text_theme.dart';
 import 'package:starter_project/app/theme/colors/color_extenstion.dart';
+import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
 import 'colors/app_colors.dart';
 
 class AppTheme {
@@ -49,7 +50,9 @@ class AppTheme {
         foregroundColor: AppColors.textPrimaryLight,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: AppTextTheme.lightTextTheme.titleLarge,
+        titleTextStyle: AppTextTheme.lightTextTheme.titleLarge?.copyWith(
+          color: AppColors.textPrimaryLight,
+        ),
       ),
 
       cardTheme: CardThemeData(
@@ -84,8 +87,6 @@ class AppTheme {
           textStyle: AppTextTheme.lightTextTheme.labelLarge,
         ),
       ),
-      
-      
 
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -97,6 +98,10 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceLight,
+        hintStyle: AppTextTheme.lightTextTheme.bodyMedium?.colour(AppColors.textSecondaryLight),
+        
+
+        alignLabelWithHint: true,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 14,

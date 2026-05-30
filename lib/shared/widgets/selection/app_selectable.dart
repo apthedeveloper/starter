@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/constants/app_spacing.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 
@@ -22,13 +23,11 @@ class AppSelectable extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
+      child: QuickContainer(
+        animated: true,
         duration: const Duration(milliseconds: 150),
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.sm,
-        ),
-        decoration: BoxDecoration(
+          py: AppSpacing.sm,
+          px: AppSpacing.md,
           color: nativeChangesDisabled || !isSelected
               ? colors.surface
               : colors.primary.withValues(alpha: 0.1),
@@ -38,7 +37,6 @@ class AppSelectable extends StatelessWidget {
                 ? colors.borderLight
                 : colors.primary,
           ),
-        ),
         child: child,
       ),
     );

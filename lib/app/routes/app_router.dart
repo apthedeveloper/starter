@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/app/routes/app_routes.dart';
+import 'package:starter_project/app/theme/colors/app_colors.dart';
+import 'package:starter_project/core/logger/app_logger.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
+import 'package:starter_project/features/auth/presentation/screens/complete_profile_screen.dart';
 import 'package:starter_project/features/auth/presentation/screens/login_screen.dart';
 import 'package:starter_project/features/auth/presentation/screens/signup_screen.dart';
 import 'package:starter_project/features/auth/presentation/screens/splash_screen.dart';
@@ -48,19 +52,46 @@ final class AppRouter {
         GoRoute(
           path: AppRoutes.completeProfile,
           name: AppRoutes.completeProfile,
-          builder: (_, _) => Container(color: Colors.greenAccent),
+          builder: (_, _) => CompleteProfileScreen(),
+        ),
+        GoRoute(
+          path: AppRoutes.home,
+          name: AppRoutes.home,
+          builder: (_, _) => QuickContainer(
+            onTap: () => ref.read(authControllerProvider.notifier).logout(),
+            color: AppColors.success,
+          ),
         ),
       ],
 
       redirect: (context, state) {
-        final user = authStateNotifier.value.userState.data;
+        final authState = authStateNotifier.value;
 
+        final user = authState.userState.data;
         final location = state.matchedLocation;
 
-        if(authStateNotifier.value.isInitializing) return AppRoutes.splash;
+        AppLogger.i("REDIRECTING TO $location", tag: "REDIRECT");
 
+        if (authState.isInitializing) {
+          return location == AppRoutes.splash ? null : AppRoutes.splash;
+        }
 
-        final isAuthRoute = [
+        if (location == AppRoutes.splash) {
+          if (user == null) {
+            return AppRoutes.login;
+          }
+
+          if (!user.isEmailVerified) {
+            return AppRoutes.verifyEmail;
+          }
+
+          if (!user.isProfileComplete) {
+            return AppRoutes.completeProfile;
+          }
+
+          return AppRoutes.home;
+        }
+        final isPublicRoute = [
           AppRoutes.login,
           AppRoutes.signup,
           AppRoutes.register,
@@ -70,27 +101,26 @@ final class AppRouter {
         ].contains(location);
 
         if (user == null) {
-          if (isAuthRoute) return null;
-
-          return AppRoutes.login;
+          return isPublicRoute ? null : AppRoutes.login;
         }
 
         if (!user.isEmailVerified) {
-          if (location == AppRoutes.verifyEmail) {
-            return null;
-          }
-          
-
-          return AppRoutes.verifyEmail;
+          return location == AppRoutes.verifyEmail
+              ? null
+              : AppRoutes.verifyEmail;
         }
 
         if (!user.isProfileComplete) {
-          if (location == AppRoutes.completeProfile) return null;
-
-          return AppRoutes.completeProfile;
+          return location == AppRoutes.completeProfile
+              ? null
+              : AppRoutes.completeProfile;
+        }
+        
+        if (location == AppRoutes.completeProfile) {
+          return AppRoutes.home;
         }
 
-        if (isAuthRoute) {
+        if (isPublicRoute) {
           return AppRoutes.home;
         }
 

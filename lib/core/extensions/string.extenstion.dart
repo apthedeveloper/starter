@@ -1,3 +1,5 @@
+import 'package:starter_project/core/constants/app_regx.dart';
+
 enum MaskType { auto, email, phone, card, custom }
 
 extension StringMaskingExtension on String {
@@ -17,11 +19,7 @@ extension StringMaskingExtension on String {
 
     switch (type) {
       case MaskType.email:
-        return _maskEmail(
-          value,
-          visibleChars: showFirst,
-          maskChar: maskChar,
-        );
+        return _maskEmail(value, visibleChars: showFirst, maskChar: maskChar);
 
       case MaskType.phone:
         return _maskGeneric(
@@ -32,11 +30,7 @@ extension StringMaskingExtension on String {
         );
 
       case MaskType.card:
-        return _maskCard(
-          value,
-          showLast: showLast,
-          maskChar: maskChar,
-        );
+        return _maskCard(value, showLast: showLast, maskChar: maskChar);
 
       case MaskType.custom:
         return _maskGeneric(
@@ -61,9 +55,7 @@ extension StringMaskingExtension on String {
   // =========================================================
 
   bool get isEmail {
-    return RegExp(
-      r'^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$',
-    ).hasMatch(trim());
+    return AppRegex.email.hasMatch(trim());
   }
 
   bool get isPhone {
@@ -89,7 +81,7 @@ extension StringMaskingExtension on String {
   // =========================================================
 
   String get digitsOnly {
-    return replaceAll(RegExp(r'\D'), '');
+    return replaceAll(AppRegex.numbersOnly, '');
   }
 
   String get reversed {
@@ -105,9 +97,7 @@ extension StringMaskingExtension on String {
   String titleCase() {
     if (isBlank) return this;
 
-    return split(' ')
-        .map((e) => e.capitalize())
-        .join(' ');
+    return split(' ').map((e) => e.capitalize()).join(' ');
   }
 
   String removeExtraSpaces() {
@@ -125,10 +115,7 @@ extension StringMaskingExtension on String {
 
     final words = removeExtraSpaces().split(' ');
 
-    return words
-        .take(limit)
-        .map((e) => e[0].toUpperCase())
-        .join();
+    return words.take(limit).map((e) => e[0].toUpperCase()).join();
   }
 
   // =========================================================
@@ -172,10 +159,7 @@ extension StringMaskingExtension on String {
     return toLowerCase().contains(other.toLowerCase());
   }
 
-  String safeSubstring(
-    int start, [
-    int? end,
-  ]) {
+  String safeSubstring(int start, [int? end]) {
     if (start >= length) return '';
 
     end ??= length;
@@ -197,22 +181,14 @@ extension StringMaskingExtension on String {
     required int showLast,
     required String maskChar,
   }) {
-    final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+    final digitsOnly = value.replaceAll(AppRegex.numbersOnly, '');
 
     if (value.contains('@')) {
-      return _maskEmail(
-        value,
-        visibleChars: showFirst,
-        maskChar: maskChar,
-      );
+      return _maskEmail(value, visibleChars: showFirst, maskChar: maskChar);
     }
 
     if (digitsOnly.length >= 13 && digitsOnly.length <= 19) {
-      return _maskCard(
-        value,
-        showLast: 4,
-        maskChar: maskChar,
-      );
+      return _maskCard(value, showLast: 4, maskChar: maskChar);
     }
 
     if (digitsOnly.length >= 8 && digitsOnly.length <= 15) {
@@ -244,12 +220,7 @@ extension StringMaskingExtension on String {
     final parts = value.split('@');
 
     if (parts.length != 2) {
-      return _maskGeneric(
-        value,
-        showFirst: 1,
-        showLast: 1,
-        maskChar: maskChar,
-      );
+      return _maskGeneric(value, showFirst: 1, showLast: 1, maskChar: maskChar);
     }
 
     final local = parts.first;
@@ -274,7 +245,7 @@ extension StringMaskingExtension on String {
     required int showLast,
     required String maskChar,
   }) {
-    final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+    final digitsOnly = value.replaceAll(AppRegex.numbersOnly, '');
 
     if (digitsOnly.length <= showLast) {
       return value;

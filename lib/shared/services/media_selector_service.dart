@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:starter_project/app/theme/colors/color_accessor.dart';
@@ -99,6 +97,7 @@ class MediaPickerService {
     String path,
     AppThemeAccessor theme, {
     List<CropAspectRatioPreset>? aspectRatioPresets,
+    CropStyle cropStyle = CropStyle.rectangle,
     bool lockAspectRatio = false,
   }) async {
     try {
@@ -126,6 +125,7 @@ class MediaPickerService {
           AndroidUiSettings(
             toolbarTitle: "Crop Image",
             toolbarColor: theme.primary,
+            cropStyle: cropStyle,
             toolbarWidgetColor: theme.onSurface,
             backgroundColor: theme.surface,
             activeControlsWidgetColor: theme.primary,
@@ -134,6 +134,7 @@ class MediaPickerService {
             cropGridColor: theme.borderDark,
             initAspectRatio: initAspectRatio,
             lockAspectRatio: lockAspectRatio,
+            aspectRatioPresets: aspectRatio,
             cropFrameStrokeWidth: 2,
             cropGridStrokeWidth: 1,
             showCropGrid: true,
@@ -143,9 +144,11 @@ class MediaPickerService {
             title: "Crop Image",
             doneButtonTitle: "Done",
             cancelButtonTitle: "Cancel",
+            cropStyle: cropStyle,
             aspectRatioLockEnabled: !lockAspectRatio,
             resetAspectRatioEnabled: !lockAspectRatio,
             aspectRatioPickerButtonHidden: lockAspectRatio,
+            aspectRatioPresets: aspectRatio,
             rotateClockwiseButtonHidden: false,
             rotateButtonsHidden: false,
             resetButtonHidden: false,

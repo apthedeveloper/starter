@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:starter_project/core/error/api_exception.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 
 Future<T> asyncUseCase<T>(Future<T> Function() action) async {
   try {
@@ -12,7 +13,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
       case 'wrong-password':
       case 'invalid-credential':
         throw ApiException(
-          'Invalid email or password',
+          AppLocalizationsEn().invalidEmailOrPassword,
           type: ApiErrorType.unauthorized,
           raw: e,
           stackTrace: stackTrace,
@@ -20,7 +21,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'user-not-found':
         throw ApiException(
-          'User not found',
+          AppLocalizationsEn().userNotFound,
           type: ApiErrorType.notFound,
           raw: e,
           stackTrace: stackTrace,
@@ -28,7 +29,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'email-already-in-use':
         throw ApiException(
-          'Email already in use',
+          AppLocalizationsEn().emailAlreadyInUse,
           type: ApiErrorType.validation,
           raw: e,
           stackTrace: stackTrace,
@@ -36,7 +37,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'weak-password':
         throw ApiException(
-          'Weak password',
+          AppLocalizationsEn().weakPassword,
           type: ApiErrorType.validation,
           raw: e,
           stackTrace: stackTrace,
@@ -44,7 +45,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'too-many-requests':
         throw ApiException(
-          'Too many requests. Try again later.',
+          AppLocalizationsEn().tooManyRequestsTryAgainLater,
           type: ApiErrorType.tooManyRequests,
           raw: e,
           stackTrace: stackTrace,
@@ -52,7 +53,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'network-request-failed':
         throw ApiException(
-          'No internet connection',
+          AppLocalizationsEn().noInternetConnection,
           type: ApiErrorType.network,
           raw: e,
           stackTrace: stackTrace,
@@ -60,7 +61,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'user-disabled':
         throw ApiException(
-          'User account disabled',
+          AppLocalizationsEn().userAccountDisabled,
           type: ApiErrorType.forbidden,
           raw: e,
           stackTrace: stackTrace,
@@ -68,7 +69,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       default:
         throw ApiException(
-          e.message ?? 'Authentication failed',
+          e.message ?? AppLocalizationsEn().authenticationFailed,
           type: ApiErrorType.server,
           raw: e,
           stackTrace: stackTrace,
@@ -79,7 +80,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
     switch (e.code) {
       case 'permission-denied':
         throw ApiException(
-          'Permission denied',
+          AppLocalizationsEn().permissionDenied,
           type: ApiErrorType.forbidden,
           raw: e,
           stackTrace: stackTrace,
@@ -87,7 +88,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'not-found':
         throw ApiException(
-          'Document not found',
+          AppLocalizationsEn().documentNotFound,
           type: ApiErrorType.notFound,
           raw: e,
           stackTrace: stackTrace,
@@ -95,7 +96,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'unavailable':
         throw ApiException(
-          'Service unavailable',
+          AppLocalizationsEn().serviceUnavailable,
           type: ApiErrorType.network,
           raw: e,
           stackTrace: stackTrace,
@@ -103,7 +104,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       case 'deadline-exceeded':
         throw ApiException(
-          'Request timeout',
+          AppLocalizationsEn().requestTimeout,
           type: ApiErrorType.timeout,
           raw: e,
           stackTrace: stackTrace,
@@ -111,7 +112,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
       default:
         throw ApiException(
-          e.message ?? 'Database error',
+          e.message ?? AppLocalizationsEn().databaseError,
           type: ApiErrorType.server,
           raw: e,
           stackTrace: stackTrace,
@@ -120,7 +121,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
   } on SocketException catch (e, stackTrace) {
     throw ApiException(
-      'No internet connection',
+      AppLocalizationsEn().noInternetConnection,
       type: ApiErrorType.network,
       raw: e,
       stackTrace: stackTrace,
@@ -128,14 +129,14 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
 
   } on TimeoutException catch (e, stackTrace) {
     throw ApiException(
-      'Request timeout',
+      AppLocalizationsEn().requestTimeout,
       type: ApiErrorType.timeout,
       raw: e,
       stackTrace: stackTrace,
     );
   } on FormatException catch (e, stackTrace) {
     throw ApiException(
-      'Invalid data format',
+      AppLocalizationsEn().invalidDataFormat,
       type: ApiErrorType.validation,
       raw: e,
       stackTrace: stackTrace,
@@ -146,7 +147,7 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
   } catch (e, stackTrace) {
 
     throw ApiException(
-      'Something went wrong',
+      AppLocalizationsEn().somethingWentWrong,
       type: ApiErrorType.unknown,
       raw: e,
       stackTrace: stackTrace,

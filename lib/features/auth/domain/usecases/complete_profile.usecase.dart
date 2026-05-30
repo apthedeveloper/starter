@@ -1,26 +1,38 @@
 import 'package:starter_project/core/error/api_exception.dart';
+import 'package:starter_project/core/network/json_keys.dart';
 import 'package:starter_project/core/utils/callback/async_callback.usecase.dart';
-import 'package:starter_project/features/auth/domain/entities/user.entity.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 
 class CompleteProfileUseCase {
   final AuthRepository repository;
 
   CompleteProfileUseCase(this.repository);
 
-  Future<User> call({required Map<String, dynamic> data}) async {
+  Future<bool> call({
+    required Map<String, dynamic> data,
+    required String profileLocalPath,
+  }) async {
     final isLoggedIn = await repository.getFirebaseUser();
     if (isLoggedIn == null) {
-      throw ApiException("User is not logged in");
+      throw ApiException(AppLocalizationsEn().userIsNotLoggedIn);
     }
 
     return asyncUseCase(() async {
-      final user = await repository.completeProfile(data);
+      // await repository.deleteProfile().onError((error, stackTrace) => null);
 
-      if (user == null ) {
-        throw ApiException("Failed to update profile. Please try again later.");
+      // data[JsonKeys.profileImagePath] = await repository.uploadProfile(
+      //   profileLocalPath,
+      // );
+
+      final isSuccess = await repository.completeProfile(data);
+
+      if (isSuccess == null || isSuccess == false) {
+        throw ApiException(
+          AppLocalizationsEn().failedToUpdateProfilePleaseTryAgainLater,
+        );
       }
-      return user;
+      return isSuccess;
     });
   }
 }

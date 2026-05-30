@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
 
 class AppFieldLabel extends StatelessWidget {
   final String text;
@@ -11,7 +12,7 @@ class AppFieldLabel extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: text,
-        style: Theme.of(context).textTheme.labelLarge,
+        style: Theme.of(context).textTheme.labelLarge?.decreaseSize(1),
         children: [
           if (isRequired)
             const TextSpan(

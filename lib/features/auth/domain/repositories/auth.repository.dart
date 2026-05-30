@@ -12,10 +12,11 @@ abstract class AuthRepository {
   Future<bool?> sendVerificationEmail();
   Future<bool?> isEmailVerified();
   Future<authuser.User?> fetchUserProfile();
-  Future<authuser.User?> completeProfile(final Map<String, dynamic> data);
+  Future<bool?> completeProfile(final Map<String, dynamic> data);
   Future<bool?> forgetPassword({required String email});
   Future<bool> logout();
   Future<bool?> deleteProfile();
+  Future<String?> uploadProfile(String path);
 
   Stream<authuser.User?> startListenUserStateChanges();
 }

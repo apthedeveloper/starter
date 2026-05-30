@@ -2,6 +2,7 @@ import 'package:starter_project/core/error/api_exception.dart';
 import 'package:starter_project/core/utils/callback/stream_callback.usecase.dart';
 import 'package:starter_project/features/auth/domain/entities/user.entity.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 
 class StartListenUserStateChangesUseCase {
   final AuthRepository repository;
@@ -18,7 +19,7 @@ class StartListenUserStateChangesUseCase {
           throw error;
         }
         throw ApiException(
-          "Failed to listen auth state changes",
+          AppLocalizationsEn().failedToListenAuthStateChanges,
           raw: error,
           stackTrace: stackTrace,
         );

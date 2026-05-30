@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/app/layout/app_layout.dart';
 import 'package:starter_project/app/theme/colors/color_accessor.dart';
 import 'package:starter_project/core/constants/app_durations.dart';
@@ -22,10 +23,10 @@ final class AppSheet {
     bool isVideo = false,
   }) {
     return AppSheet.show<XFile?>(
-      title: isVideo ? "Select a video" : "Select an image",
+      title: isVideo ? context.localizations.selectAVideo : context.localizations.selectAnImage,
       subtitle: isVideo
-          ? "Choose from your video library or take a video"
-          : "Choose from your gallery or take a photo",
+          ? context.localizations.chooseFromYourVideoLibraryOrTakeAVideo
+          : context.localizations.chooseFromYourGalleryOrTakeAPhoto,
       action: AppSheetHeaderAction.back,
       context: context,
       child: AppMediaPickerSheet(isVideo: isVideo),
@@ -70,28 +71,22 @@ final class AppSheet {
           padding: EdgeInsets.only(bottom: mediaQuery.viewInsets.bottom),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-            child: Container(
-              constraints: BoxConstraints(
-                maxHeight: maxHeight ?? mediaQuery.size.height * 0.92,
-              ),
-              decoration: BoxDecoration(
-                color: backgroundColor ?? theme.surface,
+            child: QuickContainer(
+              maxH: maxHeight ?? mediaQuery.size.height * 0.92,
+               color: backgroundColor ?? theme.surface,
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(2 * AppSpacing.md),
                 ),
-              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (showHandle) ...[
                     12.h,
-                    Container(
-                      width: 42,
-                      height: 4,
-                      decoration: BoxDecoration(
+                   QuickContainer(
+                      w: 42,
+                      h: 4,
                         color: theme.onSurface,
                         borderRadius: BorderRadius.circular(999),
-                      ),
                     ),
                   ],
 

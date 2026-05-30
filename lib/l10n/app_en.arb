@@ -1,0 +1,178 @@
+{
+  "@@locale": "en",
+  "appNameSplash": "Starter",
+  "tagline": "Your journey starts here",
+  "loginTitle": "Login",
+  "signUpTitle": "Sign Up",
+  "dontHaveAccountText": "If you don't have any account",
+  "haveAccountText": "If you have any account",
+  "signup": "Signup",
+  "login": "Login",
+  "emailLabel": "Email",
+  "emailHint": "Email",
+  "passwordLabel": "Password",
+  "passwordHint": "Password",
+  "completeProfileTitle": "Complete Profile",
+  "fullNameLabel": "Full Name",
+  "fullNameHint": "Enter your full name",
+  "fullNameRequired": "Name is required",
+  "bioLabel": "Bio",
+  "bioHint": "Tell us about yourself",
+  "dobLabel": "Date of Birth",
+  "dobHint": "Select your date of birth",
+  "dobRequired": "Date of birth is required",
+  "genderLabel": "Gender",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "genderOther": "Other",
+  "genderUnknown": "Unknown",
+  "emailAddressHint": "Your email address",
+  "fillRequiredFieldsError": "Please fill all required fields",
+  "selectGenderError": "Please select a gender",
+  "selectProfileImageError": "Please select a profile image",
+  "checkYourEmail": "Check Your Email",
+  "sentVerificationLink": "We've sent a verification link to",
+  "checkInboxInstructions": "Please check your inbox and tap the verification link to continue.",
+  "resendEmail": "Resend Email",
+  "resendEmailWithSeconds": "Resend Email ({seconds}s)",
+
+  "@resendEmailWithSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "continueBtn": "Continue",
+  "wrongEmailText": "Wrong email? ",
+  "goBack": "Go Back",
+  "failedToLoadMore": "Failed to load more",
+  "somethingWentWrong": "Something went wrong",
+  "noDataFound": "No data found",
+  "fieldRequired": "{fieldName} is required",
+  "@fieldRequired": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "thisField": "This field",
+  "emailRequired": "Email is required",
+  "enterValidEmail": "Enter a valid email",
+  "passwordRequired": "Password is required",
+  "passwordMinLengthError": "Password must be at least {minLength} characters",
+  "@passwordMinLengthError": {
+    "placeholders": {
+      "minLength": {
+        "type": "int"
+      }
+    }
+  },
+  "strongPasswordError": "Password must include upper, lower, number & special char",
+  "phoneRequired": "Phone number is required",
+  "enterValidPhone": "Enter valid 10-digit phone number",
+  "minLengthError": "Minimum {length} characters required",
+  "@minLengthError": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "maxLengthError": "Maximum {length} characters allowed",
+  "@maxLengthError": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "thisFieldRequired": "This field is required",
+  "enterValidNumber": "Enter a valid number",
+  "pleaseConfirmPassword": "Please confirm password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "exitApp": "Exit App",
+  "areYouSureYouWantToLeaveAnyUnsavedChangesWillBeLost": "Are you sure you want to leave? Any unsaved changes will be lost.",
+  "exit": "Exit",
+  "thisItem": "this item",
+  "thisActionCannotBeUndoneAreYouAbsolutelySure": "This action cannot be undone. Are you absolutely sure?",
+  "keep": "Keep",
+  "delete": "Delete",
+  "great": "Great!",
+  "proceed": "Proceed",
+  "gotIt": "Got it",
+  "logOut": "Log Out",
+  "youWillBeSignedOutOfYourAccount": "You will be signed out of your account.",
+  "selectAVideo": "Select a video",
+  "selectAnImage": "Select an image",
+  "chooseFromYourVideoLibraryOrTakeAVideo": "Choose from your video library or take a video",
+  "chooseFromYourGalleryOrTakeAPhoto": "Choose from your gallery or take a photo",
+  "searchItem": "Search item",
+  "chooseFromGallery": "Choose from Gallery",
+  "selectFromYourVideoLibrary": "Select from your video library",
+  "selectFromYourPhotoLibrary": "Select from your photo library",
+  "takeAPhoto": "Take a Photo",
+  "useCameraToCaptureNewImage": "Use camera to capture new image",
+  "invalidImageSourceConfiguration": "Invalid image source configuration",
+
+
+
+  "withoutContextMessages": "withoutContextMessages",
+  "connectionTimeout": "Connection timeout",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "tomorrow": "Tomorrow",
+  "requestCancelled": "Request cancelled",
+  "noInternetConnection": "No internet connection",
+  "serverError": "Server error",
+  "failedToParseResponse": "Failed to parse response",
+  "noFilesProvided": "No files provided",
+  "requestFailed": "Request failed",
+  "unexpectedError": "Unexpected error",
+  "invalidEmailOrPassword": "Invalid email or password",
+  "userNotFound": "User not found",
+  "emailAlreadyInUse": "Email already in use",
+  "weakPassword": "Weak password",
+  "tooManyRequestsTryAgainLater": "Too many requests. Try again later.",
+  "userAccountDisabled": "User account disabled",
+  "documentNotFound": "Document not found",
+  "authenticationFailed": "Authentication failed",
+  "serviceUnavailable": "Service unavailable",
+  "databaseError": "Database error",
+  "requestTimeout": "Request timeout",
+  "invalidDataFormat": "Invalid data format",
+  "permissionDenied": "Permission denied",
+  "userIsNotLoggedIn": "User is not logged in",
+  "failedToUpdateProfilePleaseTryAgainLater": "Failed to update profile. Please try again later.",
+  "failedToDeleteProfilePleaseTryAgainLater": "Failed to delete profile. Please try again later.",
+  "emailIsRequired": "Email is required",
+  "failedToResetPasswordPleaseTryAgainLater": "Failed to reset password. Please try again later.",
+  "passwordIsRequired": "Password is required",
+  "failedToLoginPleaseTryAgainLater": "Failed to login. Please try again later.",
+  "failedToLogoutPleaseTryAgainLater": "Failed to logout. Please try again later.",
+  "failedToGetUserProfilePleaseTryAgainLater": "Failed to get user profile. Please try again later.",
+  "failedToSendVerificationEmailPleaseTryAgainLater": "Failed to send verification email. Please try again later.",
+  "failedToSignupPleaseTryAgainLater": "Failed to signup. Please try again later.",
+  "failedToListenAuthStateChanges": "Failed to listen auth state changes",
+  "signupFailed": "Signup failed",
+  "loginFailed": "Login failed",
+  "verificationEmailSent": "Verification email sent",
+  "failedToSendVerificationEmail": "Failed to send verification email",
+  "failedToRefreshCurrentUser": "Failed to refresh current user",
+  "failedToLogout": "Failed to logout",
+  "pleaseVerifyYourEmailFirst": "Please verify your email first",
+  "profileCompletedSuccessfully": "Profile completed successfully",
+  "failedToCompleteProfile": "Failed to complete profile",
+  "imagePickerFailed": "Image picker failed",
+  "videoPickerFailed": "Video picker failed",
+  "cropImage": "Crop Image",
+  "done": "Done",
+  "pleaseTryAgain": "Please try again",
+  "provideEitherIconOrLottieAssetNotBoth": "Provide either icon or lottieAsset, not both.",
+  "tryRefreshingOrCheckBackLater": "Try refreshing or check back later",
+  "retry": "Retry",
+  "refresh": "Refresh"
+}

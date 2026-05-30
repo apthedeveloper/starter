@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:starter_project/core/error/api_exception.dart';
 import 'package:starter_project/core/logger/app_logger.dart';
+import 'package:starter_project/core/network/json_keys.dart';
 import 'package:starter_project/features/auth/domain/entities/user.entity.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';
+import 'package:starter_project/features/auth/domain/usecases/complete_profile.usecase.dart';
 import 'package:starter_project/features/auth/domain/usecases/login.usecase.dart';
 import 'package:starter_project/features/auth/domain/usecases/logout.usecase.dart';
 import 'package:starter_project/features/auth/domain/usecases/refresh_current_user.usecase.dart';
@@ -12,6 +14,7 @@ import 'package:starter_project/features/auth/domain/usecases/send_verification_
 import 'package:starter_project/features/auth/domain/usecases/signup.usecase.dart';
 import 'package:starter_project/features/auth/domain/usecases/start_listen.usecase.dart';
 import 'package:starter_project/features/auth/presentation/state/auth.state.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 import 'package:starter_project/shared/states/api.state.dart';
 import 'package:starter_project/shared/widgets/feedbacks/app_snackbar.dart';
 
@@ -44,9 +47,9 @@ class AuthController extends StateNotifier<AuthState> {
       onError: (error, stackTrace) {
         final message = error is ApiException
             ? error.message
-            : "Something went wrong";
+            : AppLocalizationsEn().somethingWentWrong;
 
-        AppSnackbar.show(message: message, type: SnackbarType.error);
+        AppSnackbar.error(message);
 
         state = state.copyWith(
           userState: state.userState.copyWith(error: message, isLoading: false),
@@ -89,7 +92,7 @@ class AuthController extends StateNotifier<AuthState> {
         await LoginUseCase(repo).call(email: email, password: password);
       }
     } on ApiException catch (e) {
-      AppSnackbar.show(message: e.message, type: SnackbarType.error);
+      AppSnackbar.error(e.message);
 
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.message),
@@ -97,9 +100,11 @@ class AuthController extends StateNotifier<AuthState> {
 
       AppLogger.e(e.message, error: e, stackTrace: e.stackTrace);
     } catch (e, stackTrace) {
-      final message = isSignup ? "Signup failed" : "Login failed";
+      final message = isSignup
+          ? AppLocalizationsEn().signupFailed
+          : AppLocalizationsEn().loginFailed;
 
-      AppSnackbar.show(message: message, type: SnackbarType.error);
+      AppSnackbar.error(message);
 
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.toString()),
@@ -114,24 +119,18 @@ class AuthController extends StateNotifier<AuthState> {
   }
 
   Future<void> sendVerificationEmail() async {
-    state = state.copyWith(otherLoader: true);
+    state = state.copyWith(secondaryLoader: true);
     try {
       await SendVerificationEmailUseCase(repo).call();
-      AppSnackbar.show(
-        message: "Verification email sent",
-        type: SnackbarType.success,
-      );
+      AppSnackbar.success(AppLocalizationsEn().verificationEmailSent);
     } on ApiException catch (e) {
-      AppSnackbar.show(message: e.message, type: SnackbarType.error);
+      AppSnackbar.error(e.message);
       AppLogger.e(e.message, error: e, stackTrace: e.stackTrace);
     } catch (e, stackTrace) {
-      AppSnackbar.show(
-        message: "Failed to send verification email",
-        type: SnackbarType.error,
-      );
+      AppSnackbar.error(AppLocalizationsEn().failedToSendVerificationEmail);
       AppLogger.e(e.toString(), error: e, stackTrace: stackTrace);
     } finally {
-      state = state.copyWith(otherLoader: false);
+      state = state.copyWith(secondaryLoader: false);
     }
   }
 
@@ -143,16 +142,13 @@ class AuthController extends StateNotifier<AuthState> {
       final user = await RefreshCurrentUserUseCase(repo).call();
       state = state.copyWith(userState: state.userState.copyWith(data: user));
     } on ApiException catch (e) {
-      AppSnackbar.show(message: e.message, type: SnackbarType.error);
+      AppSnackbar.error(e.message);
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.message),
       );
       AppLogger.e(e.message, error: e, stackTrace: e.stackTrace);
     } catch (e, stackTrace) {
-      AppSnackbar.show(
-        message: "Failed to refresh current user",
-        type: SnackbarType.error,
-      );
+      AppSnackbar.error(AppLocalizationsEn().failedToRefreshCurrentUser);
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.toString()),
       );
@@ -171,19 +167,16 @@ class AuthController extends StateNotifier<AuthState> {
     try {
       final isSuccess = await LogoutUseCase(repo).call();
       if (!isSuccess) {
-        AppSnackbar.show(message: "Failed to logout", type: SnackbarType.error);
+        AppSnackbar.error(AppLocalizationsEn().failedToLogout);
       }
     } on ApiException catch (e) {
-      AppSnackbar.show(message: e.message, type: SnackbarType.error);
+      AppSnackbar.error(e.message);
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.message),
       );
       AppLogger.e(e.message, error: e, stackTrace: e.stackTrace);
     } catch (e, stackTrace) {
-      AppSnackbar.show(
-        message: "Failed to refresh current user",
-        type: SnackbarType.error,
-      );
+      AppSnackbar.error(AppLocalizationsEn().failedToRefreshCurrentUser);
       state = state.copyWith(
         userState: state.userState.copyWith(error: e.toString()),
       );
@@ -200,13 +193,58 @@ class AuthController extends StateNotifier<AuthState> {
     final isEmailVerified = state.userState.data?.isEmailVerified ?? false;
 
     if (!isEmailVerified) {
-      AppSnackbar.show(
-        message: "Please verify your email first",
-        type: SnackbarType.warning,
-      );
+      AppSnackbar.warning(AppLocalizationsEn().pleaseVerifyYourEmailFirst);
       return false;
     }
 
     return true;
+  }
+
+  Future<void> completeProfile({
+    required String name,
+    required String bio,
+    required String dateOfBirth,
+    required String gender,
+    required String profileImagePath,
+  }) async {
+    state = state.copyWith(
+      userState: state.userState.copyWith(isLoading: true, error: null),
+    );
+
+    try {
+      final profileData = <String, dynamic>{
+        JsonKeys.name: name,
+        JsonKeys.bio: bio,
+        JsonKeys.dateOfBirth: dateOfBirth,
+        JsonKeys.gender: gender,
+        JsonKeys.profileImagePath: profileImagePath,
+      };
+
+      await CompleteProfileUseCase(
+        repo,
+      ).call(data: profileData, profileLocalPath: profileImagePath);
+
+      AppSnackbar.success(AppLocalizationsEn().profileCompletedSuccessfully);
+    } on ApiException catch (e) {
+      AppSnackbar.error(e.message);
+
+      state = state.copyWith(
+        userState: state.userState.copyWith(error: e.message),
+      );
+
+      AppLogger.e(e.message, error: e, stackTrace: e.stackTrace);
+    } catch (e, stackTrace) {
+      AppSnackbar.error(AppLocalizationsEn().failedToCompleteProfile);
+
+      state = state.copyWith(
+        userState: state.userState.copyWith(error: e.toString()),
+      );
+
+      AppLogger.e(e.toString(), error: e, stackTrace: stackTrace);
+    } finally {
+      state = state.copyWith(
+        userState: state.userState.copyWith(isLoading: false, error: null),
+      );
+    }
   }
 }

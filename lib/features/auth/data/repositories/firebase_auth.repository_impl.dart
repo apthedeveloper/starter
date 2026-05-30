@@ -1,15 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:starter_project/core/network/json_keys.dart';
+import 'package:starter_project/core/services/file_storage/firebase_file_storage.service.dart';
 import 'package:starter_project/features/auth/data/models/user.model.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';
 import 'package:starter_project/features/auth/domain/entities/user.entity.dart'
     as authuser;
 
-
 class FirebaseAuthImpl implements AuthRepository {
   final _auth = FirebaseAuth.instance;
   final _user = FirebaseFirestore.instance.collection("users");
+  final _fileService = FileStorageService();
+  String _profileRemotePath(String userId) =>
+      'users/$userId/profile_${DateTime.now().millisecondsSinceEpoch}.jpg';
+
   @override
   Future<bool?> login({
     required String email,
@@ -57,7 +62,7 @@ class FirebaseAuthImpl implements AuthRepository {
   @override
   Stream<authuser.User?> startListenUserStateChanges() {
     getFirebaseUser();
-    return _auth.idTokenChanges().switchMap((firebaseUser) {
+    return _auth.userChanges().switchMap((firebaseUser) {
       if (firebaseUser == null) {
         return Stream.value(null);
       }
@@ -78,11 +83,25 @@ class FirebaseAuthImpl implements AuthRepository {
   }
 
   @override
-  Future<authuser.User?> completeProfile(
-    final Map<String, dynamic> data,
-  ) async {
+  Future<bool?> completeProfile(final Map<String, dynamic> data) async {
     await _user.doc(_auth.currentUser!.uid).set(data, SetOptions(merge: true));
-    return await fetchUserProfile();
+    return true;
+  }
+
+  @override
+  Future<String?> uploadProfile(String path) async {
+   final url = await _fileService.uploadFile(
+      localPath: path,
+      storagePath: _profileRemotePath(_auth.currentUser!.uid),
+    );
+    return url;
+  }
+
+  @override
+  Future<bool?> deleteProfile() async {
+    final data = (await _user.doc(_auth.currentUser!.uid).get()).data();
+    await _fileService.deleteFileFromUrl(data![JsonKeys.profileImagePath]);
+    return true;
   }
 
   @override
@@ -103,10 +122,5 @@ class FirebaseAuthImpl implements AuthRepository {
     return true;
   }
 
-  @override
-  Future<bool?> deleteProfile() async {
-    await _user.doc(_auth.currentUser!.uid).delete();
-    await _auth.currentUser!.delete();
-    return true;
-  }
+ 
 }

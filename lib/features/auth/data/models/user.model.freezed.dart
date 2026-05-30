@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
-@JsonKey(name: JsonKeys.id) String get id;@JsonKey(name: JsonKeys.email) String get email;@JsonKey(name: JsonKeys.isEmailVerified) bool get isEmailVerified;
+ String get id; String get email; bool get isEmailVerified; String? get name; String? get bio; String? get dateOfBirth; String? get gender; String? get profileImagePath;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.profileImagePath, profileImagePath) || other.profileImagePath == profileImagePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,email,isEmailVerified);
+int get hashCode => Object.hash(runtimeType,id,email,isEmailVerified,name,bio,dateOfBirth,gender,profileImagePath);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, email: $email, isEmailVerified: $isEmailVerified)';
+  return 'UserModel(id: $id, email: $email, isEmailVerified: $isEmailVerified, name: $name, bio: $bio, dateOfBirth: $dateOfBirth, gender: $gender, profileImagePath: $profileImagePath)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: JsonKeys.id) String id,@JsonKey(name: JsonKeys.email) String email,@JsonKey(name: JsonKeys.isEmailVerified) bool isEmailVerified
+ String id, String email, bool isEmailVerified, String? name, String? bio, String? dateOfBirth, String? gender, String? profileImagePath
 });
 
 
@@ -65,12 +65,17 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? isEmailVerified = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? isEmailVerified = null,Object? name = freezed,Object? bio = freezed,Object? dateOfBirth = freezed,Object? gender = freezed,Object? profileImagePath = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,isEmailVerified: null == isEmailVerified ? _self.isEmailVerified : isEmailVerified // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as String?,profileImagePath: freezed == profileImagePath ? _self.profileImagePath : profileImagePath // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -152,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: JsonKeys.id)  String id, @JsonKey(name: JsonKeys.email)  String email, @JsonKey(name: JsonKeys.isEmailVerified)  bool isEmailVerified)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String email,  bool isEmailVerified,  String? name,  String? bio,  String? dateOfBirth,  String? gender,  String? profileImagePath)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.email,_that.isEmailVerified);case _:
+return $default(_that.id,_that.email,_that.isEmailVerified,_that.name,_that.bio,_that.dateOfBirth,_that.gender,_that.profileImagePath);case _:
   return orElse();
 
 }
@@ -173,10 +178,10 @@ return $default(_that.id,_that.email,_that.isEmailVerified);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: JsonKeys.id)  String id, @JsonKey(name: JsonKeys.email)  String email, @JsonKey(name: JsonKeys.isEmailVerified)  bool isEmailVerified)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String email,  bool isEmailVerified,  String? name,  String? bio,  String? dateOfBirth,  String? gender,  String? profileImagePath)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.email,_that.isEmailVerified);}
+return $default(_that.id,_that.email,_that.isEmailVerified,_that.name,_that.bio,_that.dateOfBirth,_that.gender,_that.profileImagePath);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +195,10 @@ return $default(_that.id,_that.email,_that.isEmailVerified);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: JsonKeys.id)  String id, @JsonKey(name: JsonKeys.email)  String email, @JsonKey(name: JsonKeys.isEmailVerified)  bool isEmailVerified)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String email,  bool isEmailVerified,  String? name,  String? bio,  String? dateOfBirth,  String? gender,  String? profileImagePath)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.email,_that.isEmailVerified);case _:
+return $default(_that.id,_that.email,_that.isEmailVerified,_that.name,_that.bio,_that.dateOfBirth,_that.gender,_that.profileImagePath);case _:
   return null;
 
 }
@@ -205,12 +210,17 @@ return $default(_that.id,_that.email,_that.isEmailVerified);case _:
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({@JsonKey(name: JsonKeys.id) required this.id, @JsonKey(name: JsonKeys.email) required this.email, @JsonKey(name: JsonKeys.isEmailVerified) required this.isEmailVerified}): super._();
+  const _UserModel({required this.id, required this.email, required this.isEmailVerified, this.name, this.bio, this.dateOfBirth, this.gender, this.profileImagePath}): super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-@override@JsonKey(name: JsonKeys.id) final  String id;
-@override@JsonKey(name: JsonKeys.email) final  String email;
-@override@JsonKey(name: JsonKeys.isEmailVerified) final  bool isEmailVerified;
+@override final  String id;
+@override final  String email;
+@override final  bool isEmailVerified;
+@override final  String? name;
+@override final  String? bio;
+@override final  String? dateOfBirth;
+@override final  String? gender;
+@override final  String? profileImagePath;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -225,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.isEmailVerified, isEmailVerified) || other.isEmailVerified == isEmailVerified)&&(identical(other.name, name) || other.name == name)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.profileImagePath, profileImagePath) || other.profileImagePath == profileImagePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,email,isEmailVerified);
+int get hashCode => Object.hash(runtimeType,id,email,isEmailVerified,name,bio,dateOfBirth,gender,profileImagePath);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, email: $email, isEmailVerified: $isEmailVerified)';
+  return 'UserModel(id: $id, email: $email, isEmailVerified: $isEmailVerified, name: $name, bio: $bio, dateOfBirth: $dateOfBirth, gender: $gender, profileImagePath: $profileImagePath)';
 }
 
 
@@ -245,7 +255,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: JsonKeys.id) String id,@JsonKey(name: JsonKeys.email) String email,@JsonKey(name: JsonKeys.isEmailVerified) bool isEmailVerified
+ String id, String email, bool isEmailVerified, String? name, String? bio, String? dateOfBirth, String? gender, String? profileImagePath
 });
 
 
@@ -262,12 +272,17 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = null,Object? isEmailVerified = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = null,Object? isEmailVerified = null,Object? name = freezed,Object? bio = freezed,Object? dateOfBirth = freezed,Object? gender = freezed,Object? profileImagePath = freezed,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,isEmailVerified: null == isEmailVerified ? _self.isEmailVerified : isEmailVerified // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as String?,profileImagePath: freezed == profileImagePath ? _self.profileImagePath : profileImagePath // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

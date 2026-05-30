@@ -11,9 +11,14 @@ sealed class UserModel with _$UserModel {
   const UserModel._();
 
   const factory UserModel({
-    @JsonKey(name: JsonKeys.id) required String id,
-    @JsonKey(name: JsonKeys.email) required String email,
-    @JsonKey(name: JsonKeys.isEmailVerified) required bool isEmailVerified,
+    required String id,
+    required String email,
+    required bool isEmailVerified,
+    String? name,
+    String? bio,
+    String? dateOfBirth,
+    String? gender,
+    String? profileImagePath,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -25,7 +30,8 @@ sealed class UserModel with _$UserModel {
     DocumentSnapshot snapshot,
   ) {
     AppLogger.i(
-      "UserModel.fromSnapshot: ${id}, ${isEmailVerified}, ${snapshot.data() as Map<String, dynamic>}",
+      "${{id: id, isEmailVerified: isEmailVerified, ...snapshot.data() as Map<String, dynamic>}}",
+      tag: "UserModel.fromSnapshot",
     );
     return UserModel.fromJson({
       ...snapshot.data() as Map<String, dynamic>,
@@ -34,40 +40,15 @@ sealed class UserModel with _$UserModel {
     });
   }
   User toEntity() {
-    return User(id: id, email: email, isEmailVerified: isEmailVerified);
+    return User(
+      id: id,
+      email: email,
+      isEmailVerified: isEmailVerified,
+      name: name,
+      bio: bio,
+      dateOfBirth: dateOfBirth,
+      gender: gender,
+      profileImagePath: profileImagePath,
+    );
   }
 }
-
-
-// class UserModel {
-//   final String id;
-//   final String email;
-
-//   UserModel({
-//     required this.id,
-//     required this.email,
-//   });
-
-//   factory UserModel.fromJson(Map<String, dynamic> json) {
-//     return UserModel(
-//       id: json['id'],
-//       email: json['email'],
-//     );
-//   }
-
-//   Map<String, dynamic> toJson() => {
-//         'id': id,
-//         'email': email,
-//       };
-
-//   User toEntity() {
-//     return User(id: id, email: email);
-//   }
-
-//   factory UserModel.fromEntity(User user) {
-//     return UserModel(
-//       id: user.id,
-//       email: user.email,
-//     );
-//   }
-// }

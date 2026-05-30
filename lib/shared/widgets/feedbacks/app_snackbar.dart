@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
+import 'package:starter_project/core/extensions/translate.extenstion.dart';
 import 'package:starter_project/shared/services/feedback_services.dart';
 
 enum SnackbarType { success, error, warning, info }
@@ -88,6 +90,52 @@ class AppSnackbar {
 
     FeedbackService.showSnackbar(snackBar);
   }
+
+  static void error(
+    String message, {
+
+    String? actionLabel,
+    VoidCallback? onAction,
+    Duration duration = const Duration(seconds: 3),
+  }) {
+    show(
+      message: message,
+      type: SnackbarType.error,
+      actionLabel: actionLabel,
+      onAction: onAction,
+      duration: duration,
+    );
+  }
+
+  static void success(
+    String message, {
+    String? actionLabel,
+    VoidCallback? onAction,
+    Duration duration = const Duration(seconds: 3),
+  }) {
+    show(
+      message: message,
+      type: SnackbarType.success,
+      actionLabel: actionLabel,
+      onAction: onAction,
+      duration: duration,
+    );
+  }
+
+  static void warning(
+    String message, {
+    String? actionLabel,
+    VoidCallback? onAction,
+    Duration duration = const Duration(seconds: 3),
+  }) {
+    show(
+      message: message,
+      type: SnackbarType.warning,
+      actionLabel: actionLabel,
+      onAction: onAction,
+      duration: duration,
+    );
+  }
 }
 
 class _AppSnackbarContent extends StatelessWidget {
@@ -107,19 +155,18 @@ class _AppSnackbarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: style.backgroundColor.withValues(alpha: 0.95),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: colors.backgroundDark.withValues(alpha: 0.15),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return QuickContainer(
+      px: 16,
+      py: 14,
+      color: style.backgroundColor.withValues(alpha: 0.95),
+      borderRadius: BorderRadius.circular(16),
+      shadows: [
+        BoxShadow(
+          color: colors.backgroundDark.withValues(alpha: 0.15),
+          blurRadius: 12,
+          offset: const Offset(0, 4),
+        ),
+      ],
       child: Row(
         children: [
           Icon(style.icon, color: style.iconColor, size: 22),
@@ -128,7 +175,7 @@ class _AppSnackbarContent extends StatelessWidget {
           /// Message
           Expanded(
             child: Text(
-              message,
+              message.tr(context),
               style:
                   textStyle?.copyWith(
                     color: textStyle?.color ?? colors.surface,

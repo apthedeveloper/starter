@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:starter_project/core/error/api_exception.dart';
+import 'package:starter_project/gen/app_localizations_en.dart';
 
 Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
   try {
@@ -13,7 +14,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
       case 'wrong-password':
       case 'invalid-credential':
         throw ApiException(
-          'Invalid email or password',
+          AppLocalizationsEn().invalidEmailOrPassword,
           type: ApiErrorType.unauthorized,
           raw: e,
           stackTrace: stackTrace,
@@ -21,7 +22,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
       case 'network-request-failed':
         throw ApiException(
-          'No internet connection',
+          AppLocalizationsEn().noInternetConnection,
           type: ApiErrorType.network,
           raw: e,
           stackTrace: stackTrace,
@@ -29,7 +30,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
       default:
         throw ApiException(
-          e.message ?? 'Authentication failed',
+          e.message ?? AppLocalizationsEn().authenticationFailed,
           type: ApiErrorType.server,
           raw: e,
           stackTrace: stackTrace,
@@ -38,7 +39,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
   } on FirebaseException catch (e, stackTrace) {
     throw ApiException(
-      e.message ?? 'Database error',
+      e.message ?? AppLocalizationsEn().databaseError,
       type: ApiErrorType.server,
       raw: e,
       stackTrace: stackTrace,
@@ -46,7 +47,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
   } on SocketException catch (e, stackTrace) {
     throw ApiException(
-      'No internet connection',
+      AppLocalizationsEn().noInternetConnection,
       type: ApiErrorType.network,
       raw: e,
       stackTrace: stackTrace,
@@ -54,7 +55,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
   } on TimeoutException catch (e, stackTrace) {
     throw ApiException(
-      'Request timeout',
+      AppLocalizationsEn().requestTimeout,
       type: ApiErrorType.timeout,
       raw: e,
       stackTrace: stackTrace,
@@ -65,7 +66,7 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
 
   } catch (e, stackTrace) {
     throw ApiException(
-      'Something went wrong',
+      AppLocalizationsEn().somethingWentWrong,
       type: ApiErrorType.unknown,
       raw: e,
       stackTrace: stackTrace,
