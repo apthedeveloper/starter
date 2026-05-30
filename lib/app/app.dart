@@ -6,7 +6,7 @@ import 'package:starter_project/shared/services/feedback_services.dart';
 import 'package:starter_project/app/theme/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:starter_project/gen/app_localizations.dart';
-
+import 'package:starter_project/shared/widgets/connectivity/internet_connectivity.widget.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -30,7 +30,19 @@ class App extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      supportedLocales: const [Locale('en'),],
+      supportedLocales: const [Locale('en')],
+
+      builder: (_, child) {
+        return Stack(
+          children: [
+            child!,
+            const Align(
+              alignment: Alignment.topCenter,
+              child: NoInternetBanner(),
+            ),
+          ],
+        );
+      },
     );
   }
 }

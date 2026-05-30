@@ -55,6 +55,26 @@ class AppTheme {
         ),
       ),
 
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.surfaceLight,
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.textSecondaryLight,
+        selectedIconTheme: IconThemeData(size: 26),
+        unselectedIconTheme: IconThemeData(size: 22),
+        selectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+        elevation: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+      ),
+
       cardTheme: CardThemeData(
         color: AppColors.surfaceLight,
         elevation: 0,
@@ -98,8 +118,9 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceLight,
-        hintStyle: AppTextTheme.lightTextTheme.bodyMedium?.colour(AppColors.textSecondaryLight),
-        
+        hintStyle: AppTextTheme.lightTextTheme.bodyMedium?.colour(
+          AppColors.textSecondaryLight,
+        ),
 
         alignLabelWithHint: true,
         contentPadding: const EdgeInsets.symmetric(

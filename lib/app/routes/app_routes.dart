@@ -19,4 +19,7 @@ final class AppRoutes {
 
   //after complete
   static const home = '/home';
+  static const search = '/search';
+  static const explore = '/explore';
+  static const profile = '/profile';
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
 import 'package:starter_project/shared/widgets/selection/app_selectable.dart';
-import 'package:starter_project/shared/controllers/selection_controller.dart';
+import 'package:starter_project/shared/controllers/selection.controller.dart';
 import 'package:starter_project/shared/models/selectable_item.dart';
 
 class AppSelectableChip<V, D> extends StatelessWidget {

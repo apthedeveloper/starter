@@ -4,7 +4,7 @@ import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/spacing.extenstion.dart';
 import 'package:starter_project/app/layout/app_layout.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
-import 'package:starter_project/shared/controllers/selection_controller.dart';
+import 'package:starter_project/shared/controllers/selection.controller.dart';
 import 'package:starter_project/core/utils/validators.dart';
 import 'package:starter_project/shared/widgets/inputs/app_input_label.dart';
 import 'package:starter_project/shared/widgets/inputs/app_text_field.dart';

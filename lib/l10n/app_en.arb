@@ -176,3 +176,6 @@
   "retry": "Retry",
   "refresh": "Refresh"
 }
+class JsonKeys {
+"noInternetConnection" : "No internet connection";
+}

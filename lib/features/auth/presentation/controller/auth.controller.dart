@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:starter_project/core/error/api_exception.dart';
 import 'package:starter_project/core/logger/app_logger.dart';
-import 'package:starter_project/core/network/json_keys.dart';
+import 'package:starter_project/shared/constants/api/json_keys.dart';
 import 'package:starter_project/features/auth/domain/entities/user.entity.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';
 import 'package:starter_project/features/auth/domain/usecases/complete_profile.usecase.dart';

@@ -3,7 +3,7 @@ import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/core/constants/app_spacing.dart';
 import 'package:starter_project/core/extensions/context.extenstion.dart';
 import 'package:starter_project/core/extensions/textstyle_extenstion.dart';
-import 'package:starter_project/shared/controllers/selection_controller.dart';
+import 'package:starter_project/shared/controllers/selection.controller.dart';
 import 'package:starter_project/shared/models/selectable_item.dart';
 import 'package:starter_project/shared/widgets/inputs/app_text_field.dart';
 import 'package:starter_project/shared/widgets/pagination/app_pagination.dart';

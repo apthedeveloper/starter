@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:starter_project/core/network/json_keys.dart';
+import 'package:starter_project/shared/constants/api/json_keys.dart';
 import 'package:starter_project/core/services/file_storage/firebase_file_storage.service.dart';
 import 'package:starter_project/features/auth/data/models/user.model.dart';
 import 'package:starter_project/features/auth/domain/repositories/auth.repository.dart';

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_project/core/logger/app_logger.dart';
-import 'package:starter_project/core/network/json_keys.dart';
+import 'package:starter_project/shared/constants/api/json_keys.dart';
 import 'package:starter_project/features/auth/domain/entities/user.entity.dart';
 part 'user.model.freezed.dart';
 part 'user.model.g.dart';
