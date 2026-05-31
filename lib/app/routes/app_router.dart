@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_container/quick_container.dart';
 import 'package:starter_project/app/routes/app_routes.dart';
-import 'package:starter_project/app/screens/main_navigation_page.dart';
+import 'package:starter_project/app/screens/main_navigation.screen.dart';
 import 'package:starter_project/app/theme/colors/app_colors.dart';
 import 'package:starter_project/core/logger/app_logger.dart';
+import 'package:starter_project/core/services/permission/permission.service.dart';
+import 'package:starter_project/core/utils/ensure_permission.dart';
 import 'package:starter_project/features/auth/presentation/controller/auth.provider.dart';
 import 'package:starter_project/features/auth/presentation/screens/complete_profile.screen.dart';
 import 'package:starter_project/features/auth/presentation/screens/login.screen.dart';
@@ -90,9 +92,59 @@ final class AppRouter {
                 GoRoute(
                   path: AppRoutes.explore,
                   name: AppRoutes.explore,
-                  builder: (context, state) => QuickContainer(
-                    color: AppColors.errorLight,
-                    child: Center(child: Text(AppRoutes.explore)),
+                  builder: (context, state) => SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        QuickContainer(
+                          h: 60,
+                          mb: 3,
+                          onTap: () async {
+                            ensurePermission(
+                              context,
+                              type: PermissionType.location,
+                              grantedType: PermissionGrant.always,
+                              onPermissionGet: () {},
+                            );
+                          },
+
+                          color: AppColors.warningLight,
+                          child: Center(
+                            child: Text(PermissionType.location.toString()),
+                          ),
+                        ),
+                        QuickContainer(
+                          h: 60,
+                          mb: 3,
+                          onTap: () async {
+                            ensurePermission(
+                              context,
+                              type: PermissionType.location,
+                              grantedType: PermissionGrant.whenInUse,
+                              onPermissionGet: () {},
+                            );
+                          },
+
+                          color: AppColors.warningLight,
+                          child: Center(child: Text("while in use")),
+                        ),
+                        ...PermissionType.values.map((e) {
+                          return QuickContainer(
+                            h: 60,
+                            mb: 3,
+                            onTap: () async {
+                              ensurePermission(
+                                context,
+                                type: e,
+                                onPermissionGet: () {},
+                              );
+                            },
+
+                            color: AppColors.warningLight,
+                            child: Center(child: Text(e.toString())),
+                          );
+                        }),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -119,7 +171,7 @@ final class AppRouter {
         final user = authState.userState.data;
         final location = state.matchedLocation;
 
-        AppLogger.i("REDIRECTING TO $location", tag: "REDIRECT");
+        AppLogger.d("REDIRECTING TO $location", tag: "REDIRECT");
 
         if (authState.isInitializing) {
           return location == AppRoutes.splash ? null : AppRoutes.splash;

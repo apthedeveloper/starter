@@ -446,4 +446,201 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get refresh => 'Refresh';
+
+  @override
+  String get permissionLocationName => 'Location';
+
+  @override
+  String get permissionCameraName => 'Camera';
+
+  @override
+  String get permissionPhotosName => 'Photos';
+
+  @override
+  String get permissionMicrophoneName => 'Microphone';
+
+  @override
+  String get permissionNotificationName => 'Notifications';
+
+  @override
+  String get permissionBluetoothName => 'Bluetooth';
+
+  @override
+  String get permissionContactsName => 'Contacts';
+
+  @override
+  String get permissionCalendarName => 'Calendar';
+
+  @override
+  String get permissionRemindersName => 'Reminders';
+
+  @override
+  String get permissionStorageName => 'Storage';
+
+  @override
+  String enablePermissionAccess(String permission) {
+    return 'Enable $permission Access';
+  }
+
+  @override
+  String defaultPermissionExplanation(String permission) {
+    return 'We need access to your $permission to provide full functionality. Rest assured, your data is kept secure.';
+  }
+
+  @override
+  String get grantPermission => 'Grant Permission';
+
+  @override
+  String get notNow => 'Not Now';
+
+  @override
+  String serviceIsOff(String service) {
+    return '$service is Off';
+  }
+
+  @override
+  String serviceOffExplanation(String service) {
+    return 'Your system $service seems to be disabled. To proceed, please toggle it on in settings.';
+  }
+
+  @override
+  String get bluetoothService => 'Bluetooth';
+
+  @override
+  String get locationServices => 'Location Services';
+
+  @override
+  String get serviceDisabledBullet1 => 'Required to scan and connect devices';
+
+  @override
+  String get serviceDisabledBullet2 => 'Enables native discovery features';
+
+  @override
+  String get serviceDisabledBullet3 =>
+      'Turn on directly in your phone settings panel';
+
+  @override
+  String get openSystemSettings => 'Open System Settings';
+
+  @override
+  String get goBackBtn => 'Go Back';
+
+  @override
+  String permissionAccessDisabled(String permission) {
+    return '$permission Access Disabled';
+  }
+
+  @override
+  String permissionDisabledExplanation(String permission) {
+    return 'You have permanently disabled $permission access. Please follow these quick steps to re-enable:';
+  }
+
+  @override
+  String get permanentlyDeniedBullet1 => '1. Tap \"Open Settings\" below.';
+
+  @override
+  String permanentlyDeniedBullet2(String permission) {
+    return '2. Select \"Permissions\" (or \"$permission\").';
+  }
+
+  @override
+  String get permanentlyDeniedBullet3 =>
+      '3. Toggle the permission to \"Allowed\" or \"Always\".';
+
+  @override
+  String get openAppSettings => 'Open App Settings';
+
+  @override
+  String get bulletLocation1 => 'Find nearby locations and destinations';
+
+  @override
+  String get bulletLocation2 => 'Get highly accurate mapping features';
+
+  @override
+  String get bulletLocation3 => 'Optimize routes and navigation guidelines';
+
+  @override
+  String get bulletCamera1 => 'Take beautiful photos and video directly in-app';
+
+  @override
+  String get bulletCamera2 => 'Scan QR codes instantly';
+
+  @override
+  String get bulletCamera3 => 'Personalize your avatar dynamically';
+
+  @override
+  String get bulletPhotos1 =>
+      'Select and upload existing photos from your library';
+
+  @override
+  String get bulletPhotos2 => 'Save downloaded media safely to your device';
+
+  @override
+  String get bulletPhotos3 => 'Manage album-specific selections';
+
+  @override
+  String get bulletMicrophone1 => 'Record high-quality voice audio notes';
+
+  @override
+  String get bulletMicrophone2 => 'Enable hands-free speech interactions';
+
+  @override
+  String get bulletMicrophone3 => 'Capture sound during video recordings';
+
+  @override
+  String get bulletNotification1 =>
+      'Receive instant real-time alerts and updates';
+
+  @override
+  String get bulletNotification2 =>
+      'Get notification of critical security events';
+
+  @override
+  String get bulletNotification3 => 'Never miss a message or app reminder';
+
+  @override
+  String get bulletBluetooth1 =>
+      'Scan and sync with external hardware accessories';
+
+  @override
+  String get bulletBluetooth2 => 'Enable local peer-to-peer data transfers';
+
+  @override
+  String get bulletBluetooth3 => 'Provide premium local connectivity modes';
+
+  @override
+  String get bulletContacts1 => 'Find and connect with friends instantly';
+
+  @override
+  String get bulletContacts2 => 'Auto-complete recipient contact details';
+
+  @override
+  String get bulletContacts3 => 'Share referral codes with direct contacts';
+
+  @override
+  String get bulletCalendar1 => 'Sync events and deadlines directly';
+
+  @override
+  String get bulletCalendar2 => 'Avoid schedule overlaps and conflicts';
+
+  @override
+  String get bulletCalendar3 => 'Never miss your plan dates';
+
+  @override
+  String get bulletReminders1 => 'Schedule task-specific push alerts';
+
+  @override
+  String get bulletReminders2 => 'Manage critical step checklists';
+
+  @override
+  String get bulletReminders3 => 'Receive alarm calls for quick actions';
+
+  @override
+  String get bulletStorage1 => 'Store and access documents offline';
+
+  @override
+  String get bulletStorage2 => 'Save application cache to run faster';
+
+  @override
+  String get bulletStorage3 => 'Import system files and download logs';
 }

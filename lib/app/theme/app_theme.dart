@@ -177,6 +177,23 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: colorScheme,
+      extensions: const [
+        AppThemeColors(
+          success: AppColors.success,
+          successLight: AppColors.successLight,
+          warning: AppColors.warning,
+          warningLight: AppColors.warningLight,
+          info: AppColors.info,
+          infoLight: AppColors.infoLight,
+          error: AppColors.error,
+          errorLight: AppColors.errorLight,
+          onSurfaceSecondary: AppColors.textSecondaryDark,
+          borderLight: AppColors.borderLight,
+          borderDark: AppColors.borderDark,
+          backgroundDark: AppColors.backgroundDark,
+          backgroundLight: AppColors.backgroundLight,
+        ),
+      ],
       scaffoldBackgroundColor: AppColors.backgroundDark,
       textTheme: AppTextTheme.darkTextTheme,
 

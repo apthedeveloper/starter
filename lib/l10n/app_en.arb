@@ -174,8 +174,129 @@
   "provideEitherIconOrLottieAssetNotBoth": "Provide either icon or lottieAsset, not both.",
   "tryRefreshingOrCheckBackLater": "Try refreshing or check back later",
   "retry": "Retry",
-  "refresh": "Refresh"
-}
-class JsonKeys {
-"noInternetConnection" : "No internet connection";
+  "refresh": "Refresh",
+
+  "permissionLocationName": "Location",
+  "permissionCameraName": "Camera",
+  "permissionPhotosName": "Photos",
+  "permissionMicrophoneName": "Microphone",
+  "permissionNotificationName": "Notifications",
+  "permissionBluetoothName": "Bluetooth",
+  "permissionContactsName": "Contacts",
+  "permissionCalendarName": "Calendar",
+  "permissionRemindersName": "Reminders",
+  "permissionStorageName": "Storage",
+
+  "enablePermissionAccess": "Enable {permission} Access",
+  "@enablePermissionAccess": {
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  "defaultPermissionExplanation": "We need access to your {permission} to provide full functionality. Rest assured, your data is kept secure.",
+  "@defaultPermissionExplanation": {
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  "grantPermission": "Grant Permission",
+  "notNow": "Not Now",
+  
+  "serviceIsOff": "{service} is Off",
+  "@serviceIsOff": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceOffExplanation": "Your system {service} seems to be disabled. To proceed, please toggle it on in settings.",
+  "@serviceOffExplanation": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "bluetoothService": "Bluetooth",
+  "locationServices": "Location Services",
+  
+  "serviceDisabledBullet1": "Required to scan and connect devices",
+  "serviceDisabledBullet2": "Enables native discovery features",
+  "serviceDisabledBullet3": "Turn on directly in your phone settings panel",
+  "openSystemSettings": "Open System Settings",
+  "goBackBtn": "Go Back",
+  
+  "permissionAccessDisabled": "{permission} Access Disabled",
+  "@permissionAccessDisabled": {
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  "permissionDisabledExplanation": "You have permanently disabled {permission} access. Please follow these quick steps to re-enable:",
+  "@permissionDisabledExplanation": {
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "permanentlyDeniedBullet1": "1. Tap \"Open Settings\" below.",
+  "permanentlyDeniedBullet2": "2. Select \"Permissions\" (or \"{permission}\").",
+  "@permanentlyDeniedBullet2": {
+    "placeholders": {
+      "permission": {
+        "type": "String"
+      }
+    }
+  },
+  "permanentlyDeniedBullet3": "3. Toggle the permission to \"Allowed\" or \"Always\".",
+  "openAppSettings": "Open App Settings",
+  
+  "bulletLocation1": "Find nearby locations and destinations",
+  "bulletLocation2": "Get highly accurate mapping features",
+  "bulletLocation3": "Optimize routes and navigation guidelines",
+  
+  "bulletCamera1": "Take beautiful photos and video directly in-app",
+  "bulletCamera2": "Scan QR codes instantly",
+  "bulletCamera3": "Personalize your avatar dynamically",
+  
+  "bulletPhotos1": "Select and upload existing photos from your library",
+  "bulletPhotos2": "Save downloaded media safely to your device",
+  "bulletPhotos3": "Manage album-specific selections",
+  
+  "bulletMicrophone1": "Record high-quality voice audio notes",
+  "bulletMicrophone2": "Enable hands-free speech interactions",
+  "bulletMicrophone3": "Capture sound during video recordings",
+  
+  "bulletNotification1": "Receive instant real-time alerts and updates",
+  "bulletNotification2": "Get notification of critical security events",
+  "bulletNotification3": "Never miss a message or app reminder",
+  
+  "bulletBluetooth1": "Scan and sync with external hardware accessories",
+  "bulletBluetooth2": "Enable local peer-to-peer data transfers",
+  "bulletBluetooth3": "Provide premium local connectivity modes",
+  
+  "bulletContacts1": "Find and connect with friends instantly",
+  "bulletContacts2": "Auto-complete recipient contact details",
+  "bulletContacts3": "Share referral codes with direct contacts",
+  
+  "bulletCalendar1": "Sync events and deadlines directly",
+  "bulletCalendar2": "Avoid schedule overlaps and conflicts",
+  "bulletCalendar3": "Never miss your plan dates",
+  
+  "bulletReminders1": "Schedule task-specific push alerts",
+  "bulletReminders2": "Manage critical step checklists",
+  "bulletReminders3": "Receive alarm calls for quick actions",
+  
+  "bulletStorage1": "Store and access documents offline",
+  "bulletStorage2": "Save application cache to run faster",
+  "bulletStorage3": "Import system files and download logs"
 }

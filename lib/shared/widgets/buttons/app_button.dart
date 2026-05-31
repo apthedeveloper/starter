@@ -127,6 +127,26 @@ class AppButton extends StatelessWidget {
     }
   }
 
+  double? _variantElevation() {
+    if (!_isEnabled) {
+      return 0;
+    }
+
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.success:
+      case ButtonType.warning:
+      case ButtonType.info:
+      case ButtonType.danger:
+        return null;
+      case ButtonType.secondaryPrimary:
+      case ButtonType.secondaryOff:
+        return 1;
+      case ButtonType.text:
+        return 0;
+    }
+  }
+
   BorderSide? _variantBorder(BuildContext context) {
     if (!_isEnabled) {
       return BorderSide(color: context.colors.onSurfaceSecondary);
@@ -194,7 +214,7 @@ class AppButton extends StatelessWidget {
           foregroundColor: WidgetStatePropertyAll(
             foregroundColor ?? _variantForeground(context),
           ),
-          elevation: WidgetStatePropertyAll(elevation),
+          elevation: WidgetStatePropertyAll(elevation ?? _variantElevation()),
           padding: WidgetStatePropertyAll(padding ?? _sizePadding()),
           side: (border ?? _variantBorder(context)) != null
               ? WidgetStatePropertyAll(border ?? _variantBorder(context)!)
@@ -227,7 +247,7 @@ class AppButton extends StatelessWidget {
     }
 
     final mainWidget = text != null
-        ? Text(text!, style: _textStyle(context))
+        ? Text(text!, style: _textStyle(context), textAlign: TextAlign.center)
         : Icon(
             icon,
             color: foregroundColor ?? _variantForeground(context),

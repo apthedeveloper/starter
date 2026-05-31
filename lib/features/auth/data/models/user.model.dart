@@ -29,7 +29,7 @@ sealed class UserModel with _$UserModel {
     bool isEmailVerified,
     DocumentSnapshot snapshot,
   ) {
-    AppLogger.i(
+    AppLogger.d(
       "${{id: id, isEmailVerified: isEmailVerified, ...snapshot.data() as Map<String, dynamic>}}",
       tag: "UserModel.fromSnapshot",
     );

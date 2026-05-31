@@ -909,6 +909,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refresh'**
   String get refresh;
+
+  /// No description provided for @permissionLocationName.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get permissionLocationName;
+
+  /// No description provided for @permissionCameraName.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get permissionCameraName;
+
+  /// No description provided for @permissionPhotosName.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get permissionPhotosName;
+
+  /// No description provided for @permissionMicrophoneName.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone'**
+  String get permissionMicrophoneName;
+
+  /// No description provided for @permissionNotificationName.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get permissionNotificationName;
+
+  /// No description provided for @permissionBluetoothName.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth'**
+  String get permissionBluetoothName;
+
+  /// No description provided for @permissionContactsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get permissionContactsName;
+
+  /// No description provided for @permissionCalendarName.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar'**
+  String get permissionCalendarName;
+
+  /// No description provided for @permissionRemindersName.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get permissionRemindersName;
+
+  /// No description provided for @permissionStorageName.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get permissionStorageName;
+
+  /// No description provided for @enablePermissionAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable {permission} Access'**
+  String enablePermissionAccess(String permission);
+
+  /// No description provided for @defaultPermissionExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'We need access to your {permission} to provide full functionality. Rest assured, your data is kept secure.'**
+  String defaultPermissionExplanation(String permission);
+
+  /// No description provided for @grantPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Grant Permission'**
+  String get grantPermission;
+
+  /// No description provided for @notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Now'**
+  String get notNow;
+
+  /// No description provided for @serviceIsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} is Off'**
+  String serviceIsOff(String service);
+
+  /// No description provided for @serviceOffExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your system {service} seems to be disabled. To proceed, please toggle it on in settings.'**
+  String serviceOffExplanation(String service);
+
+  /// No description provided for @bluetoothService.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth'**
+  String get bluetoothService;
+
+  /// No description provided for @locationServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Services'**
+  String get locationServices;
+
+  /// No description provided for @serviceDisabledBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Required to scan and connect devices'**
+  String get serviceDisabledBullet1;
+
+  /// No description provided for @serviceDisabledBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Enables native discovery features'**
+  String get serviceDisabledBullet2;
+
+  /// No description provided for @serviceDisabledBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on directly in your phone settings panel'**
+  String get serviceDisabledBullet3;
+
+  /// No description provided for @openSystemSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open System Settings'**
+  String get openSystemSettings;
+
+  /// No description provided for @goBackBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get goBackBtn;
+
+  /// No description provided for @permissionAccessDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'{permission} Access Disabled'**
+  String permissionAccessDisabled(String permission);
+
+  /// No description provided for @permissionDisabledExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'You have permanently disabled {permission} access. Please follow these quick steps to re-enable:'**
+  String permissionDisabledExplanation(String permission);
+
+  /// No description provided for @permanentlyDeniedBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Tap \"Open Settings\" below.'**
+  String get permanentlyDeniedBullet1;
+
+  /// No description provided for @permanentlyDeniedBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Select \"Permissions\" (or \"{permission}\").'**
+  String permanentlyDeniedBullet2(String permission);
+
+  /// No description provided for @permanentlyDeniedBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Toggle the permission to \"Allowed\" or \"Always\".'**
+  String get permanentlyDeniedBullet3;
+
+  /// No description provided for @openAppSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open App Settings'**
+  String get openAppSettings;
+
+  /// No description provided for @bulletLocation1.
+  ///
+  /// In en, this message translates to:
+  /// **'Find nearby locations and destinations'**
+  String get bulletLocation1;
+
+  /// No description provided for @bulletLocation2.
+  ///
+  /// In en, this message translates to:
+  /// **'Get highly accurate mapping features'**
+  String get bulletLocation2;
+
+  /// No description provided for @bulletLocation3.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimize routes and navigation guidelines'**
+  String get bulletLocation3;
+
+  /// No description provided for @bulletCamera1.
+  ///
+  /// In en, this message translates to:
+  /// **'Take beautiful photos and video directly in-app'**
+  String get bulletCamera1;
+
+  /// No description provided for @bulletCamera2.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR codes instantly'**
+  String get bulletCamera2;
+
+  /// No description provided for @bulletCamera3.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalize your avatar dynamically'**
+  String get bulletCamera3;
+
+  /// No description provided for @bulletPhotos1.
+  ///
+  /// In en, this message translates to:
+  /// **'Select and upload existing photos from your library'**
+  String get bulletPhotos1;
+
+  /// No description provided for @bulletPhotos2.
+  ///
+  /// In en, this message translates to:
+  /// **'Save downloaded media safely to your device'**
+  String get bulletPhotos2;
+
+  /// No description provided for @bulletPhotos3.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage album-specific selections'**
+  String get bulletPhotos3;
+
+  /// No description provided for @bulletMicrophone1.
+  ///
+  /// In en, this message translates to:
+  /// **'Record high-quality voice audio notes'**
+  String get bulletMicrophone1;
+
+  /// No description provided for @bulletMicrophone2.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable hands-free speech interactions'**
+  String get bulletMicrophone2;
+
+  /// No description provided for @bulletMicrophone3.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture sound during video recordings'**
+  String get bulletMicrophone3;
+
+  /// No description provided for @bulletNotification1.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive instant real-time alerts and updates'**
+  String get bulletNotification1;
+
+  /// No description provided for @bulletNotification2.
+  ///
+  /// In en, this message translates to:
+  /// **'Get notification of critical security events'**
+  String get bulletNotification2;
+
+  /// No description provided for @bulletNotification3.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a message or app reminder'**
+  String get bulletNotification3;
+
+  /// No description provided for @bulletBluetooth1.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan and sync with external hardware accessories'**
+  String get bulletBluetooth1;
+
+  /// No description provided for @bulletBluetooth2.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable local peer-to-peer data transfers'**
+  String get bulletBluetooth2;
+
+  /// No description provided for @bulletBluetooth3.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide premium local connectivity modes'**
+  String get bulletBluetooth3;
+
+  /// No description provided for @bulletContacts1.
+  ///
+  /// In en, this message translates to:
+  /// **'Find and connect with friends instantly'**
+  String get bulletContacts1;
+
+  /// No description provided for @bulletContacts2.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-complete recipient contact details'**
+  String get bulletContacts2;
+
+  /// No description provided for @bulletContacts3.
+  ///
+  /// In en, this message translates to:
+  /// **'Share referral codes with direct contacts'**
+  String get bulletContacts3;
+
+  /// No description provided for @bulletCalendar1.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync events and deadlines directly'**
+  String get bulletCalendar1;
+
+  /// No description provided for @bulletCalendar2.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid schedule overlaps and conflicts'**
+  String get bulletCalendar2;
+
+  /// No description provided for @bulletCalendar3.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss your plan dates'**
+  String get bulletCalendar3;
+
+  /// No description provided for @bulletReminders1.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule task-specific push alerts'**
+  String get bulletReminders1;
+
+  /// No description provided for @bulletReminders2.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage critical step checklists'**
+  String get bulletReminders2;
+
+  /// No description provided for @bulletReminders3.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive alarm calls for quick actions'**
+  String get bulletReminders3;
+
+  /// No description provided for @bulletStorage1.
+  ///
+  /// In en, this message translates to:
+  /// **'Store and access documents offline'**
+  String get bulletStorage1;
+
+  /// No description provided for @bulletStorage2.
+  ///
+  /// In en, this message translates to:
+  /// **'Save application cache to run faster'**
+  String get bulletStorage2;
+
+  /// No description provided for @bulletStorage3.
+  ///
+  /// In en, this message translates to:
+  /// **'Import system files and download logs'**
+  String get bulletStorage3;
 }
 
 class _AppLocalizationsDelegate

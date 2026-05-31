@@ -46,3 +46,4 @@ app.*.map.json
 structure
 .env
 key.config.apdev
+permissions_setup_guide.md
