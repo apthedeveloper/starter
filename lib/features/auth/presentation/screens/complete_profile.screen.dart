@@ -11,7 +11,9 @@ class CompleteProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppAppBar.modal(title: context.localizations.completeProfileTitle),
+      appBar: AppAppBar.modal(
+        title: context.localizations.completeProfileTitle,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

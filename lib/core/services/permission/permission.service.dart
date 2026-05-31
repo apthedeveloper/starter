@@ -13,14 +13,10 @@ enum PermissionType {
   bluetoothScan,
   bluetoothConnect,
   bluetoothAdvertise,
-  
 }
 
 /// Level of location permission required.
-enum PermissionGrant {
-  always,
-  whenInUse,
-}
+enum PermissionGrant { always, whenInUse }
 
 /// Abstract contract defining the core permission management features.
 abstract interface class PermissionService {

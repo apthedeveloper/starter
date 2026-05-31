@@ -14,6 +14,6 @@ class ProdConfig implements AppConfig {
   @override
   bool get enableLogging => false;
 
-   @override
+  @override
   int get projectId => dotenv.getInt('PROD_PROJECT_ID');
 }

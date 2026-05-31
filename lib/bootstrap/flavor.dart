@@ -1,8 +1,4 @@
-enum Flavor {
-  dev,
-  staging,
-  prod,
-}
+enum Flavor { dev, staging, prod }
 
 final class AppFlavor {
   AppFlavor._();

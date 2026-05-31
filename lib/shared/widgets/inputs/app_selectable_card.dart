@@ -30,22 +30,22 @@ class AppSelectableCard<V> extends StatelessWidget {
       onTap: () => controller.toggle(item.id, single: single),
       child: Row(
         children: [
-     QuickContainer(
-        animated: true,
+          QuickContainer(
+            animated: true,
             duration: const Duration(milliseconds: 150),
             w: 20,
             h: 20,
-            p: isSelected ? 3: 0,
-              shape: .circle,
-              border: Border.all(
-                color: isSelected ? colors.primary : colors.borderLight,
-              ),
-              color: AppColors.white,
+            p: isSelected ? 3 : 0,
+            shape: .circle,
+            border: Border.all(
+              color: isSelected ? colors.primary : colors.borderLight,
+            ),
+            color: AppColors.white,
             child: QuickContainer(
               w: double.infinity,
               h: double.infinity,
-                shape: .circle,
-                color: isSelected ? colors.primary : Colors.transparent,
+              shape: .circle,
+              color: isSelected ? colors.primary : Colors.transparent,
             ),
           ),
           12.w,

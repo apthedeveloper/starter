@@ -16,7 +16,10 @@ class SignupScreen extends StatelessWidget {
         child: Column(
           children: [
             100.h,
-            Text(context.localizations.signUpTitle, style: context.textTheme.headlineLarge),
+            Text(
+              context.localizations.signUpTitle,
+              style: context.textTheme.headlineLarge,
+            ),
             20.h,
 
             AuthForm(isSignup: true),

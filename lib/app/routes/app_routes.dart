@@ -1,7 +1,6 @@
 final class AppRoutes {
   AppRoutes._();
 
-  
   //public
   static const splash = '/';
   static const login = '/login';
@@ -11,11 +10,9 @@ final class AppRoutes {
   static const resetPassword = '/resetPassword';
   static const verifyOtp = '/verifyOtp';
 
-
   //after auth
   static const verifyEmail = '/verifyEmail';
   static const completeProfile = '/completeProfile';
-
 
   //after complete
   static const home = '/home';

@@ -88,8 +88,9 @@ class AppPopup {
     return show(
       context: context,
       title: context.localizations.exitApp,
-      message:
-          context.localizations.areYouSureYouWantToLeaveAnyUnsavedChangesWillBeLost,
+      message: context
+          .localizations
+          .areYouSureYouWantToLeaveAnyUnsavedChangesWillBeLost,
       icon: Icons.logout_rounded,
       variant: PopupVariant.danger,
       buttons: [
@@ -118,8 +119,9 @@ class AppPopup {
   }) {
     return show(
       context: context,
-      title: 'Delete ${deleteItemName??context.localizations.thisItem}',
-      message: context.localizations.thisActionCannotBeUndoneAreYouAbsolutelySure,
+      title: 'Delete ${deleteItemName ?? context.localizations.thisItem}',
+      message:
+          context.localizations.thisActionCannotBeUndoneAreYouAbsolutelySure,
       icon: Icons.delete_outline_rounded,
       variant: PopupVariant.danger,
       buttons: [
@@ -131,7 +133,7 @@ class AppPopup {
           },
         ),
         AppButton(
-          text:context.localizations.delete,
+          text: context.localizations.delete,
           type: ButtonType.danger,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -158,7 +160,7 @@ class AppPopup {
       showCloseButton: false,
       buttons: [
         AppButton(
-          text: buttonLabel??context.localizations.great,
+          text: buttonLabel ?? context.localizations.great,
           type: ButtonType.success,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -184,14 +186,14 @@ class AppPopup {
       variant: PopupVariant.warning,
       buttons: [
         AppButton(
-          text: cancelLabel??context.localizations.goBack,
+          text: cancelLabel ?? context.localizations.goBack,
           type: ButtonType.secondaryOff,
           onPressed: () {
             _close(PopupResult(action: PopupAction.cancel), context);
           },
         ),
         AppButton(
-          text: confirmLabel?? context.localizations.proceed,
+          text: confirmLabel ?? context.localizations.proceed,
           type: ButtonType.warning,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);
@@ -217,7 +219,7 @@ class AppPopup {
       showCloseButton: false,
       buttons: [
         AppButton(
-          text: buttonLabel?? context.localizations.gotIt,
+          text: buttonLabel ?? context.localizations.gotIt,
           type: ButtonType.info,
           onPressed: () {
             _close(PopupResult(action: PopupAction.confirm), context);

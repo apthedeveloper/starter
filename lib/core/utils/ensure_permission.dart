@@ -63,7 +63,6 @@ Future<void> ensurePermission(
 
   var status = await controller.checkStatus(type, grant: grantedType);
 
-
   if (!context.mounted) return;
 
   // 3. If already granted, run success callback.
@@ -71,7 +70,6 @@ Future<void> ensurePermission(
     onPermissionGet();
     return;
   }
-
 
   // 4. If denied (default/not determined), optionally show rationale sheet.
   if (status == PermissionStatus.denied &&

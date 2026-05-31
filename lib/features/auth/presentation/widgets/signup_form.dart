@@ -12,8 +12,7 @@ import 'package:starter_project/shared/widgets/buttons/app_button.dart';
 
 class AuthForm extends StatefulWidget {
   final bool isSignup;
-  const AuthForm({super.key,  this.isSignup=false});
-  
+  const AuthForm({super.key, this.isSignup = false});
 
   @override
   State<AuthForm> createState() => _AuthFormState();
@@ -96,7 +95,9 @@ class _AuthFormState extends State<AuthForm> {
                   authControllerProvider.select((s) => s.userState.isLoading),
                 );
                 return AppButton(
-                  text: widget.isSignup ? context.localizations.signup : context.localizations.login,
+                  text: widget.isSignup
+                      ? context.localizations.signup
+                      : context.localizations.login,
                   isLoading: isLoading,
                   onPressed: () async {
                     if (!(formKey.currentState?.validate() ?? false)) return;

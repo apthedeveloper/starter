@@ -17,8 +17,10 @@ class SendVerificationEmailUseCase {
     return asyncUseCase(() async {
       final isSuccess = await repository.sendVerificationEmail();
 
-      if (isSuccess==null ||  isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToSendVerificationEmailPleaseTryAgainLater);
+      if (isSuccess == null || isSuccess == false) {
+        throw ApiException(
+          AppLocalizationsEn().failedToSendVerificationEmailPleaseTryAgainLater,
+        );
       }
       return isSuccess;
     });

@@ -125,9 +125,11 @@ class PermissionDialogs {
     required BuildContext context,
     required PermissionType type,
   }) async {
-          final isBluetooth =  [PermissionType.bluetoothScan
-            , PermissionType.bluetoothConnect
-            , PermissionType.bluetoothAdvertise].contains(type);
+    final isBluetooth = [
+      PermissionType.bluetoothScan,
+      PermissionType.bluetoothConnect,
+      PermissionType.bluetoothAdvertise,
+    ].contains(type);
     final l10n = context.localizations;
     final serviceName = isBluetooth
         ? l10n.bluetoothService

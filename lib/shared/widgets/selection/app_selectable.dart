@@ -26,17 +26,17 @@ class AppSelectable extends StatelessWidget {
       child: QuickContainer(
         animated: true,
         duration: const Duration(milliseconds: 150),
-          py: AppSpacing.sm,
-          px: AppSpacing.md,
+        py: AppSpacing.sm,
+        px: AppSpacing.md,
+        color: nativeChangesDisabled || !isSelected
+            ? colors.surface
+            : colors.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(AppSpacing.md),
+        border: Border.all(
           color: nativeChangesDisabled || !isSelected
-              ? colors.surface
-              : colors.primary.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(AppSpacing.md),
-          border: Border.all(
-            color: nativeChangesDisabled || !isSelected
-                ? colors.borderLight
-                : colors.primary,
-          ),
+              ? colors.borderLight
+              : colors.primary,
+        ),
         child: child,
       ),
     );

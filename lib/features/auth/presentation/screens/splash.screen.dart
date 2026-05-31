@@ -105,21 +105,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       body: QuickContainer(
         w: double.infinity,
         h: double.infinity,
-        gradient:  LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              context.colors.primary,
-              context.colors.primary.withValues(alpha:  0.85),
-              Color.lerp(
-                    context.colors.primary,
-                    context.colors.secondary,
-                    0.4,
-                  ) ??
-                  context.colors.primary,
-            ],
-          ),
-        
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            context.colors.primary,
+            context.colors.primary.withValues(alpha: 0.85),
+            Color.lerp(context.colors.primary, context.colors.secondary, 0.4) ??
+                context.colors.primary,
+          ],
+        ),
+
         child: SafeArea(
           child: Column(
             children: [
@@ -160,7 +156,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 child: Text(
                   context.localizations.tagline,
                   style: context.textTheme.bodyMedium?.copyWith(
-                    color: Colors.white.withValues(alpha:  0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -177,7 +173,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
                     valueColor: AlwaysStoppedAnimation(
-                      Colors.white.withValues(alpha:  0.8),
+                      Colors.white.withValues(alpha: 0.8),
                     ),
                   ),
                 ),
@@ -191,7 +187,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 child: Text(
                   '© ${DateTime.now().year}',
                   style: context.textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withValues(alpha:  0.4),
+                    color: Colors.white.withValues(alpha: 0.4),
                   ),
                 ),
               ),
@@ -211,30 +207,30 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         return QuickContainer(
           w: 120,
           h: 120,
-            shape: .circle,
-            border: Border.all(
-              color: Colors.white.withValues(alpha:  
-                0.2 + 0.15 * _shimmerController.value,
-              ),
-              width: 2.5,
+          shape: .circle,
+          border: Border.all(
+            color: Colors.white.withValues(
+              alpha: 0.2 + 0.15 * _shimmerController.value,
             ),
-            shadows: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha:  0.15),
-                blurRadius: 30,
-                spreadRadius: 5,
+            width: 2.5,
+          ),
+          shadows: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 30,
+              spreadRadius: 5,
+            ),
+            BoxShadow(
+              color: context.colors.secondary.withValues(
+                alpha: 0.15 * (1 - _shimmerController.value),
               ),
-              BoxShadow(
-                color: context.colors.secondary.withValues(alpha:  
-                  0.15 * (1 - _shimmerController.value),
-                ),
-                blurRadius: 40,
-                spreadRadius: 10,
-              ),
-            ],
+              blurRadius: 40,
+              spreadRadius: 10,
+            ),
+          ],
           child: QuickContainer(
-              shape: .circle,
-              color: Colors.white.withValues(alpha:  0.15),
+            shape: .circle,
+            color: Colors.white.withValues(alpha: 0.15),
             child: const Icon(
               Icons.rocket_launch_rounded,
               size: 52,

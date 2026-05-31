@@ -1,16 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class IntConverter
-    implements JsonConverter<int, dynamic> {
+class IntConverter implements JsonConverter<int, dynamic> {
   const IntConverter();
 
   @override
   int fromJson(dynamic json) {
     switch (json) {
       case null:
-        throw FormatException(
-          'Int value cannot be null',
-        );
+        throw FormatException('Int value cannot be null');
 
       case num():
         return json.toInt();
@@ -20,14 +17,10 @@ class IntConverter
 
         if (parsed != null) return parsed;
 
-        throw FormatException(
-          'Cannot parse "$json" into int.',
-        );
+        throw FormatException('Cannot parse "$json" into int.');
 
       default:
-        throw FormatException(
-          'Invalid int type: ${json.runtimeType}',
-        );
+        throw FormatException('Invalid int type: ${json.runtimeType}');
     }
   }
 
@@ -35,9 +28,7 @@ class IntConverter
   dynamic toJson(int object) => object;
 }
 
-
-class NullableIntConverter
-    implements JsonConverter<int?, dynamic> {
+class NullableIntConverter implements JsonConverter<int?, dynamic> {
   const NullableIntConverter();
 
   @override
@@ -54,14 +45,10 @@ class NullableIntConverter
 
         if (parsed != null) return parsed;
 
-        throw FormatException(
-          'Cannot parse "$json" into int.',
-        );
+        throw FormatException('Cannot parse "$json" into int.');
 
       default:
-        throw FormatException(
-          'Invalid int type: ${json.runtimeType}',
-        );
+        throw FormatException('Invalid int type: ${json.runtimeType}');
     }
   }
 

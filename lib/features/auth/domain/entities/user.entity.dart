@@ -19,19 +19,26 @@ class User {
     this.profileImagePath,
   });
 
+  bool get isProfileComplete =>
+      id.isNotEmpty &&
+      email.isNotEmpty &&
+      isEmailVerified &&
+      name != null &&
+      bio != null &&
+      dateOfBirth != null &&
+      gender != null &&
+      profileImagePath != null;
 
-  bool get isProfileComplete => id.isNotEmpty && email.isNotEmpty && isEmailVerified && name != null && bio != null && dateOfBirth != null && gender != null && profileImagePath != null;
-  
   User copyWith({
     String? id,
     String? email,
     bool? isEmailVerified,
     bool? isProfileComplete,
-      String? name,
-   String? bio,
-   String? dateOfBirth,
-   String? gender,
-   String? profileImagePath,
+    String? name,
+    String? bio,
+    String? dateOfBirth,
+    String? gender,
+    String? profileImagePath,
   }) {
     return User(
       id: id ?? this.id,

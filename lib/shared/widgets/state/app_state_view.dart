@@ -42,7 +42,9 @@ class AppStateView extends StatelessWidget {
 
     final resolvedMessage =
         message ??
-        (type == AppViewType.error ? context.localizations.somethingWentWrong : context.localizations.noDataFound);
+        (type == AppViewType.error
+            ? context.localizations.somethingWentWrong
+            : context.localizations.noDataFound);
 
     final resolvedSubtitle =
         subtitle ??
@@ -51,7 +53,10 @@ class AppStateView extends StatelessWidget {
             : context.localizations.tryRefreshingOrCheckBackLater);
 
     final resolvedActionText =
-        actionText ?? (type == AppViewType.error ? context.localizations.retry : context.localizations.refresh);
+        actionText ??
+        (type == AppViewType.error
+            ? context.localizations.retry
+            : context.localizations.refresh);
 
     return Center(
       child: Padding(

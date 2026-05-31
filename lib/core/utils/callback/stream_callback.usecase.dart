@@ -8,7 +8,6 @@ import 'package:starter_project/gen/app_localizations_en.dart';
 Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
   try {
     yield* action();
-
   } on FirebaseAuthException catch (e, stackTrace) {
     switch (e.code) {
       case 'wrong-password':
@@ -36,7 +35,6 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
           stackTrace: stackTrace,
         );
     }
-
   } on FirebaseException catch (e, stackTrace) {
     throw ApiException(
       e.message ?? AppLocalizationsEn().databaseError,
@@ -44,7 +42,6 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
       raw: e,
       stackTrace: stackTrace,
     );
-
   } on SocketException catch (e, stackTrace) {
     throw ApiException(
       AppLocalizationsEn().noInternetConnection,
@@ -52,7 +49,6 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
       raw: e,
       stackTrace: stackTrace,
     );
-
   } on TimeoutException catch (e, stackTrace) {
     throw ApiException(
       AppLocalizationsEn().requestTimeout,
@@ -60,10 +56,8 @@ Stream<T> streamUseCase<T>(Stream<T> Function() action) async* {
       raw: e,
       stackTrace: stackTrace,
     );
-
   } on ApiException {
     rethrow;
-
   } catch (e, stackTrace) {
     throw ApiException(
       AppLocalizationsEn().somethingWentWrong,

@@ -6,7 +6,7 @@ final class SecureStorageService implements Storage {
   SecureStorageService._();
 
   static final SecureStorageService _instance = SecureStorageService._();
-  static SecureStorageService get instance=> _instance;
+  static SecureStorageService get instance => _instance;
 
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
@@ -23,7 +23,8 @@ final class SecureStorageService implements Storage {
       );
     }
   }
-@override
+
+  @override
   Future<String?> read(String key) async {
     try {
       return await _storage.read(key: key);
@@ -36,7 +37,8 @@ final class SecureStorageService implements Storage {
       );
     }
   }
-@override
+
+  @override
   Future<void> delete(String key) async {
     try {
       await _storage.delete(key: key);
@@ -49,7 +51,8 @@ final class SecureStorageService implements Storage {
       );
     }
   }
-@override
+
+  @override
   Future<void> deleteAll() async {
     try {
       await _storage.deleteAll();

@@ -83,7 +83,7 @@ class _ProfileFormState extends ConsumerState<ProfileForm> {
       );
       if (croppedFile != null) {
         selectedProfileImageNotifier.value = croppedFile;
-      } 
+      }
     }
   }
 

@@ -90,7 +90,7 @@ class FirebaseAuthImpl implements AuthRepository {
 
   @override
   Future<String?> uploadProfile(String path) async {
-   final url = await _fileService.uploadFile(
+    final url = await _fileService.uploadFile(
       localPath: path,
       storagePath: _profileRemotePath(_auth.currentUser!.uid),
     );
@@ -121,6 +121,4 @@ class FirebaseAuthImpl implements AuthRepository {
     await _auth.signOut();
     return true;
   }
-
- 
 }

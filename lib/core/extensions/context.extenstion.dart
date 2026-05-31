@@ -11,5 +11,5 @@ extension ContextExtension on BuildContext {
   AppThemeAccessor get colors => AppThemeAccessor(this);
 
   EdgeInsets get systemPadding => MediaQuery.of(this).padding;
-  AppLocalizations get localizations =>  AppLocalizations.of(this)!;
+  AppLocalizations get localizations => AppLocalizations.of(this)!;
 }

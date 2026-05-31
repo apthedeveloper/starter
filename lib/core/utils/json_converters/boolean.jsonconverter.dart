@@ -1,16 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BoolConverter
-    implements JsonConverter<bool, dynamic> {
+class BoolConverter implements JsonConverter<bool, dynamic> {
   const BoolConverter();
 
   @override
   bool fromJson(dynamic json) {
     switch (json) {
       case null:
-        throw FormatException(
-          'Bool value cannot be null',
-        );
+        throw FormatException('Bool value cannot be null');
 
       case bool():
         return json;
@@ -19,9 +16,7 @@ class BoolConverter
         if (json == 1) return true;
         if (json == 0) return false;
 
-        throw FormatException(
-          'Invalid numeric bool value: $json',
-        );
+        throw FormatException('Invalid numeric bool value: $json');
 
       case String():
         final value = json.trim().toLowerCase();
@@ -31,14 +26,10 @@ class BoolConverter
         if (value == '1') return true;
         if (value == '0') return false;
 
-        throw FormatException(
-          'Cannot parse "$json" into bool.',
-        );
+        throw FormatException('Cannot parse "$json" into bool.');
 
       default:
-        throw FormatException(
-          'Invalid bool type: ${json.runtimeType}',
-        );
+        throw FormatException('Invalid bool type: ${json.runtimeType}');
     }
   }
 
@@ -46,8 +37,7 @@ class BoolConverter
   dynamic toJson(bool object) => object;
 }
 
-class NullableBoolConverter
-    implements JsonConverter<bool?, dynamic> {
+class NullableBoolConverter implements JsonConverter<bool?, dynamic> {
   const NullableBoolConverter();
 
   @override
@@ -63,9 +53,7 @@ class NullableBoolConverter
         if (json == 1) return true;
         if (json == 0) return false;
 
-        throw FormatException(
-          'Invalid numeric bool value: $json',
-        );
+        throw FormatException('Invalid numeric bool value: $json');
 
       case String():
         final value = json.trim().toLowerCase();
@@ -75,14 +63,10 @@ class NullableBoolConverter
         if (value == '1') return true;
         if (value == '0') return false;
 
-        throw FormatException(
-          'Cannot parse "$json" into bool.',
-        );
+        throw FormatException('Cannot parse "$json" into bool.');
 
       default:
-        throw FormatException(
-          'Invalid bool type: ${json.runtimeType}',
-        );
+        throw FormatException('Invalid bool type: ${json.runtimeType}');
     }
   }
 

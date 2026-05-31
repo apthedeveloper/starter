@@ -103,7 +103,7 @@ final class AppLogger {
     if (tag == null || tag.trim().isEmpty) {
       return type.toString();
     }
-    
+
     return '$type | $tag';
   }
 }

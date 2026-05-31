@@ -18,7 +18,9 @@ class DeleteProfileUseCase {
       final isSuccess = await repository.deleteProfile();
 
       if (isSuccess == null || isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToDeleteProfilePleaseTryAgainLater);
+        throw ApiException(
+          AppLocalizationsEn().failedToDeleteProfilePleaseTryAgainLater,
+        );
       }
       return isSuccess;
     });

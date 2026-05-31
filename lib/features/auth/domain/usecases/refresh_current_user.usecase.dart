@@ -18,8 +18,10 @@ class RefreshCurrentUserUseCase {
     return asyncUseCase(() async {
       final user = await repository.fetchUserProfile();
 
-      if (user == null ) {
-        throw ApiException(AppLocalizationsEn().failedToGetUserProfilePleaseTryAgainLater);
+      if (user == null) {
+        throw ApiException(
+          AppLocalizationsEn().failedToGetUserProfilePleaseTryAgainLater,
+        );
       }
       return user;
     });

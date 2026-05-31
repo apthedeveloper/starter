@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Widget? titleWidget;
 
@@ -33,14 +32,8 @@ class AppAppBar extends StatelessWidget
     this.foregroundColor,
   });
 
-  factory AppAppBar.primary({
-    required String title,
-    List<Widget>? actions,
-  }) {
-    return AppAppBar(
-      title: title,
-      actions: actions,
-    );
+  factory AppAppBar.primary({required String title, List<Widget>? actions}) {
+    return AppAppBar(title: title, actions: actions);
   }
 
   factory AppAppBar.transparent({
@@ -55,13 +48,8 @@ class AppAppBar extends StatelessWidget
     );
   }
 
-  factory AppAppBar.modal({
-    required String title,
-  }) {
-    return AppAppBar(
-      title: title,
-      centerTitle: true,
-    );
+  factory AppAppBar.modal({required String title}) {
+    return AppAppBar(title: title, centerTitle: true);
   }
 
   @override
@@ -73,28 +61,17 @@ class AppAppBar extends StatelessWidget
       elevation: elevation,
       scrolledUnderElevation: 0,
       centerTitle: centerTitle,
-      automaticallyImplyLeading:
-          automaticallyImplyLeading,
-      backgroundColor:
-          backgroundColor ??
-          theme.appBarTheme.backgroundColor,
-      foregroundColor:
-          foregroundColor ??
-          theme.appBarTheme.foregroundColor,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      backgroundColor: backgroundColor ?? theme.appBarTheme.backgroundColor,
+      foregroundColor: foregroundColor ?? theme.appBarTheme.foregroundColor,
       leading: leading,
       actions: actions,
       bottom: bottom,
-      title:
-          titleWidget ??
-          (title != null
-              ? Text(title!)
-              : null),
+      title: titleWidget ?? (title != null ? Text(title!) : null),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(
-        height +
-            (bottom?.preferredSize.height ?? 0),
-      );
+  Size get preferredSize =>
+      Size.fromHeight(height + (bottom?.preferredSize.height ?? 0));
 }

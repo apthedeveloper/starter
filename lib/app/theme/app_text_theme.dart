@@ -3,63 +3,27 @@ import 'colors/app_colors.dart';
 
 final class AppTextTheme {
   const AppTextTheme._();
-static TextTheme lightTextTheme = const TextTheme(
-  // ================= HEADINGS =================
-  headlineLarge: TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w700,
-  ),
-  headlineMedium: TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.w600,
-  ),
-  headlineSmall: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  ),
+  static TextTheme lightTextTheme = const TextTheme(
+    // ================= HEADINGS =================
+    headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+    headlineMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+    headlineSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
 
-  // ================= TITLES =================
-  titleLarge: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-  ),
-  titleMedium: TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-  ),
-  titleSmall: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  ),
+    // ================= TITLES =================
+    titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
 
-  // ================= BODY =================
-  bodyLarge: TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  ),
-  bodyMedium: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  ),
-  bodySmall: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  ),
+    // ================= BODY =================
+    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
 
-  // ================= LABEL =================
-  labelLarge: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  ),
-  labelMedium: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-  ),
-  labelSmall: TextStyle(
-    fontSize: 11,
-    fontWeight: FontWeight.w500,
-  ),
-);
+    // ================= LABEL =================
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+  );
 
   static const TextTheme darkTextTheme = TextTheme(
     // ================= DISPLAY =================

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 class AppLayout {
   AppLayout._();
 
@@ -13,7 +14,6 @@ class AppLayout {
   static double screenHeight(BuildContext context) {
     return screenSize(context).height;
   }
-
 
   /// Default horizontal padding
   static double horizontalPadding(BuildContext context) {
@@ -33,13 +33,10 @@ class AppLayout {
     );
   }
 
-  /// Only horizontal padding 
+  /// Only horizontal padding
   static EdgeInsets horizontalEdgeInsets(BuildContext context) {
-    return EdgeInsets.symmetric(
-      horizontal: horizontalPadding(context),
-    );
+    return EdgeInsets.symmetric(horizontal: horizontalPadding(context));
   }
-
 
   static bool isMobile(BuildContext context) {
     return screenWidth(context) < 600;
@@ -54,7 +51,6 @@ class AppLayout {
     return screenWidth(context) >= 1024;
   }
 
-
   static double maxContentWidth(BuildContext context) {
     final width = screenWidth(context);
 
@@ -67,7 +63,6 @@ class AppLayout {
     return MediaQuery.of(context).padding;
   }
 
-
   /// centered content on large screens
   static Widget centeredContent({
     required BuildContext context,
@@ -75,9 +70,7 @@ class AppLayout {
   }) {
     return Center(
       child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: maxContentWidth(context),
-        ),
+        constraints: BoxConstraints(maxWidth: maxContentWidth(context)),
         child: child,
       ),
     );

@@ -93,7 +93,7 @@ class MediaPickerService {
     }
   }
 
- static Future<XFile?> cropImage(
+  static Future<XFile?> cropImage(
     String path,
     AppThemeAccessor theme, {
     List<CropAspectRatioPreset>? aspectRatioPresets,

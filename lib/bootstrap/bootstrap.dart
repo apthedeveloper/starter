@@ -26,9 +26,6 @@ Future<void> bootstrap({
   );
   AppFlavor.setFlavor(flavor);
   AppEnvironment.init(flavor);
- await Firebase.initializeApp(
-    options:
-        DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ProviderScope(child: builder()));
 }

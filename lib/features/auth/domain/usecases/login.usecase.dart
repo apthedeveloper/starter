@@ -24,9 +24,10 @@ class LoginUseCase {
       );
 
       if (isSuccess == null || isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToLoginPleaseTryAgainLater);
+        throw ApiException(
+          AppLocalizationsEn().failedToLoginPleaseTryAgainLater,
+        );
       }
-
 
       return isSuccess;
     });

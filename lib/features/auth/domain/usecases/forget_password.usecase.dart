@@ -17,7 +17,9 @@ class ForgetPasswordUseCase {
       final isSuccess = await repository.forgetPassword(email: email);
 
       if (isSuccess == null || isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToResetPasswordPleaseTryAgainLater);
+        throw ApiException(
+          AppLocalizationsEn().failedToResetPasswordPleaseTryAgainLater,
+        );
       }
       return isSuccess;
     });

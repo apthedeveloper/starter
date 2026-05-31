@@ -318,8 +318,8 @@ class _ShimmerPlaceholder extends StatelessWidget {
     final child = QuickContainer(
       w: width,
       h: height,
-        color: Colors.grey.shade300,
-        borderRadius: borderRadius,
+      color: Colors.grey.shade300,
+      borderRadius: borderRadius,
     );
 
     if (!enabled) return child;

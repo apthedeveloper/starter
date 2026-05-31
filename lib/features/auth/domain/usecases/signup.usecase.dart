@@ -24,10 +24,14 @@ class SignupUseCase {
       );
 
       if (isSuccess == null || isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToSignupPleaseTryAgainLater);
+        throw ApiException(
+          AppLocalizationsEn().failedToSignupPleaseTryAgainLater,
+        );
       }
 
-      final isCompleteSuccess = await repository.completeProfile({JsonKeys.email: email});
+      final isCompleteSuccess = await repository.completeProfile({
+        JsonKeys.email: email,
+      });
 
       if (isCompleteSuccess == null || isCompleteSuccess == false) {
         throw ApiException(

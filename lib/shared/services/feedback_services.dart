@@ -6,8 +6,7 @@ final class FeedbackService {
   static final GlobalKey<ScaffoldMessengerState> messengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
-  static ScaffoldMessengerState? get _messenger =>
-      messengerKey.currentState;
+  static ScaffoldMessengerState? get _messenger => messengerKey.currentState;
 
   static void showSnackbar(SnackBar snackBar) {
     if (_messenger == null) return;

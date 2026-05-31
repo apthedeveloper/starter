@@ -7,7 +7,6 @@ import 'package:starter_project/gen/app_localizations_en.dart';
 Future<T> asyncUseCase<T>(Future<T> Function() action) async {
   try {
     return await action();
-
   } on FirebaseAuthException catch (e, stackTrace) {
     switch (e.code) {
       case 'wrong-password':
@@ -75,7 +74,6 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
           stackTrace: stackTrace,
         );
     }
-
   } on FirebaseException catch (e, stackTrace) {
     switch (e.code) {
       case 'permission-denied':
@@ -118,7 +116,6 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
           stackTrace: stackTrace,
         );
     }
-
   } on SocketException catch (e, stackTrace) {
     throw ApiException(
       AppLocalizationsEn().noInternetConnection,
@@ -126,7 +123,6 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
       raw: e,
       stackTrace: stackTrace,
     );
-
   } on TimeoutException catch (e, stackTrace) {
     throw ApiException(
       AppLocalizationsEn().requestTimeout,
@@ -141,11 +137,9 @@ Future<T> asyncUseCase<T>(Future<T> Function() action) async {
       raw: e,
       stackTrace: stackTrace,
     );
-
   } on ApiException {
     rethrow;
   } catch (e, stackTrace) {
-
     throw ApiException(
       AppLocalizationsEn().somethingWentWrong,
       type: ApiErrorType.unknown,

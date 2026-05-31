@@ -70,4 +70,4 @@ final class PrefsStorageService implements Storage {
       );
     }
   }
-} 
+}

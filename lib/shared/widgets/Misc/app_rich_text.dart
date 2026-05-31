@@ -31,7 +31,12 @@ class AppRichText extends StatelessWidget {
         children: spans.map((span) {
           return TextSpan(
             text: "${span.text} ",
-            style: _resolveStyle( defaultStyle, span.style, context.colors.primary, span.onTap != null),
+            style: _resolveStyle(
+              defaultStyle,
+              span.style,
+              context.colors.primary,
+              span.onTap != null,
+            ),
             recognizer: span.onTap != null
                 ? (TapGestureRecognizer()..onTap = span.onTap)
                 : null,
@@ -50,7 +55,7 @@ class AppRichText extends StatelessWidget {
     final b = base ?? const TextStyle();
 
     return b.copyWith(
-      color: override?.color ?? (isClickable ? primaryColor: b.color),
+      color: override?.color ?? (isClickable ? primaryColor : b.color),
       fontWeight:
           override?.fontWeight ??
           (isClickable ? FontWeight.w500 : b.fontWeight),
@@ -58,8 +63,7 @@ class AppRichText extends StatelessWidget {
           override?.decoration ??
           (isClickable ? TextDecoration.underline : b.decoration),
       decorationColor:
-          override?.decorationColor ??
-          (isClickable ? primaryColor: b.color),
+          override?.decorationColor ?? (isClickable ? primaryColor : b.color),
       fontSize: override?.fontSize ?? b.fontSize,
       fontStyle: override?.fontStyle ?? b.fontStyle,
       letterSpacing: override?.letterSpacing ?? b.letterSpacing,

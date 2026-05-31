@@ -23,7 +23,9 @@ final class AppSheet {
     bool isVideo = false,
   }) {
     return AppSheet.show<XFile?>(
-      title: isVideo ? context.localizations.selectAVideo : context.localizations.selectAnImage,
+      title: isVideo
+          ? context.localizations.selectAVideo
+          : context.localizations.selectAnImage,
       subtitle: isVideo
           ? context.localizations.chooseFromYourVideoLibraryOrTakeAVideo
           : context.localizations.chooseFromYourGalleryOrTakeAPhoto,
@@ -73,20 +75,20 @@ final class AppSheet {
             filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
             child: QuickContainer(
               maxH: maxHeight ?? mediaQuery.size.height * 0.92,
-               color: backgroundColor ?? theme.surface,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(2 * AppSpacing.md),
-                ),
+              color: backgroundColor ?? theme.surface,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(2 * AppSpacing.md),
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (showHandle) ...[
                     12.h,
-                   QuickContainer(
+                    QuickContainer(
                       w: 42,
                       h: 4,
-                        color: theme.onSurface,
-                        borderRadius: BorderRadius.circular(999),
+                      color: theme.onSurface,
+                      borderRadius: BorderRadius.circular(999),
                     ),
                   ],
 

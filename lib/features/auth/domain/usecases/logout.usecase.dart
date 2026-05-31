@@ -18,7 +18,9 @@ class LogoutUseCase {
       final isSuccess = await repository.logout();
 
       if (isSuccess == false) {
-        throw ApiException(AppLocalizationsEn().failedToLogoutPleaseTryAgainLater);
+        throw ApiException(
+          AppLocalizationsEn().failedToLogoutPleaseTryAgainLater,
+        );
       }
       return isSuccess;
     });

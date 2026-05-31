@@ -6,9 +6,15 @@ final class Validators {
   Validators._();
 
   /// Required field
-  static String? required(BuildContext context, String? value, {String? fieldName}) {
+  static String? required(
+    BuildContext context,
+    String? value, {
+    String? fieldName,
+  }) {
     if (value == null || value.trim().isEmpty) {
-      return context.localizations.fieldRequired(fieldName ?? context.localizations.thisField);
+      return context.localizations.fieldRequired(
+        fieldName ?? context.localizations.thisField,
+      );
     }
     return null;
   }
@@ -27,7 +33,11 @@ final class Validators {
   }
 
   /// Password validation
-  static String? password(BuildContext context, String? value, {int minLength = 6}) {
+  static String? password(
+    BuildContext context,
+    String? value, {
+    int minLength = 6,
+  }) {
     if (value == null || value.isEmpty) {
       return context.localizations.passwordRequired;
     }
@@ -97,7 +107,11 @@ final class Validators {
   }
 
   /// Confirm password
-  static String? confirmPassword(BuildContext context, String? value, String original) {
+  static String? confirmPassword(
+    BuildContext context,
+    String? value,
+    String original,
+  ) {
     if (value == null || value.isEmpty) {
       return context.localizations.pleaseConfirmPassword;
     }

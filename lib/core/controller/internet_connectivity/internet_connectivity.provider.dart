@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_project/core/controller/internet_connectivity/internet_connectivity.controller.dart';
 import 'package:starter_project/core/services/connectivity/internet/internet_connectivity.service.dart';

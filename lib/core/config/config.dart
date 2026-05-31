@@ -10,6 +10,7 @@ abstract class AppConfig {
   int get projectId;
   bool get enableLogging;
 }
+
 final class AppEnvironment {
   AppEnvironment._();
 

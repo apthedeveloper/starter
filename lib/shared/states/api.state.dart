@@ -29,8 +29,5 @@ sealed class ApiState<T> with _$ApiState<T> {
 
   bool get hasError => error != null;
 
-  bool get isIdle =>
-      !isLoading &&
-      !isRefreshing &&
-      !isLoadingMore;
+  bool get isIdle => !isLoading && !isRefreshing && !isLoadingMore;
 }

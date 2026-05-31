@@ -17,7 +17,7 @@ class AppMediaPickerSheet extends StatefulWidget {
     super.key,
     this.aspectRatioPresets,
     this.lockAspectRatio = false,
-   required this.isVideo
+    required this.isVideo,
   });
 
   @override
@@ -37,7 +37,7 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
             subtitle: widget.isVideo
                 ? context.localizations.selectFromYourVideoLibrary
                 : context.localizations.selectFromYourPhotoLibrary,
-            onTap: () async { 
+            onTap: () async {
               final pickedFile = widget.isVideo
                   ? await MediaPickerService.pickVideo(ImageSourceType.gallery)
                   : await MediaPickerService.pickImage(ImageSourceType.gallery);
@@ -51,7 +51,7 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
             icon: Icons.camera_alt_rounded,
             title: context.localizations.takeAPhoto,
             subtitle: context.localizations.useCameraToCaptureNewImage,
-            onTap: () async { 
+            onTap: () async {
               final pickedFile = widget.isVideo
                   ? await MediaPickerService.pickVideo(ImageSourceType.camera)
                   : await MediaPickerService.pickImage(ImageSourceType.camera);
@@ -77,34 +77,34 @@ class _CustomImagePickerSheetState extends State<AppMediaPickerSheet> {
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
         child: QuickContainer(
-p:16,
-            color: context.colors.borderLight,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: context.colors.primary.withValues(alpha: 0.2),
-            ),
+          p: 16,
+          color: context.colors.borderLight,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: context.colors.primary.withValues(alpha: 0.2),
+          ),
           child: Row(
             children: [
               QuickContainer(
                 w: 48,
                 h: 48,
-                  gradient: LinearGradient(
-                    colors: [
-                      context.colors.primary.withValues(alpha: 0.9),
-                      context.colors.primary.withValues(alpha: 0.5),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                  shadows: [
-                    BoxShadow(
-                      color: context.colors.backgroundLight.withValues(
-                        alpha: 0.2,
-                      ),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
+                gradient: LinearGradient(
+                  colors: [
+                    context.colors.primary.withValues(alpha: 0.9),
+                    context.colors.primary.withValues(alpha: 0.5),
                   ],
-                
+                ),
+                borderRadius: BorderRadius.circular(12),
+                shadows: [
+                  BoxShadow(
+                    color: context.colors.backgroundLight.withValues(
+                      alpha: 0.2,
+                    ),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+
                 child: Icon(icon, color: context.colors.surface, size: 24),
               ),
               const SizedBox(width: 16),

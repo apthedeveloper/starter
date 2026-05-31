@@ -146,20 +146,18 @@ class _AppDropdownState extends State<AppDropdown> {
                                 as RenderBox?)
                             ?.size
                             .width,
-                            maxH: 260,
+                    maxH: 260,
 
-                      color: context.colors.surface,
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(color: context.colors.borderLight),
-                      shadows: [
-                        BoxShadow(
-                          color: context.colors.onSurface.withValues(
-                            alpha: 0.08,
-                          ),
-                          blurRadius: 16,
-                          offset: const Offset(0, 6),
-                        ),
-                      ],
+                    color: context.colors.surface,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: context.colors.borderLight),
+                    shadows: [
+                      BoxShadow(
+                        color: context.colors.onSurface.withValues(alpha: 0.08),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(14),
                       child: Column(
@@ -247,8 +245,8 @@ class _AppDropdownState extends State<AppDropdown> {
                                                 isSelected,
                                               ) ??
                                               QuickContainer(
-                                                  px: AppSpacing.md,
-                                                  py: AppSpacing.sm,
+                                                px: AppSpacing.md,
+                                                py: AppSpacing.sm,
                                                 child: Row(
                                                   children: [
                                                     AnimatedSwitcher(
