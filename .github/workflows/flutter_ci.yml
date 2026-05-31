@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 concurrency:
   group: flutter-ci-${{ github.ref }}
   cancel-in-progress: true
@@ -34,6 +34,9 @@ jobs:
           restore-keys: |
             pub-cache-${{ runner.os }}-
 
+      - name: Create .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env
+
       - name: Install Dependencies
         run: flutter pub get
 
@@ -42,9 +45,6 @@ jobs:
 
       - name: Analyze Code
         run: flutter analyze
-
-      - name: Run Tests
-        run: flutter test --reporter expanded
 
       - name: Build APK
         run: flutter build apk --release

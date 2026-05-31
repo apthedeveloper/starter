@@ -1,5 +1,4 @@
 import 'package:permission_handler/permission_handler.dart' as ph;
-import 'package:starter_project/core/logger/app_logger.dart';
 import 'package:starter_project/core/services/permission/permission.service.dart';
 
 class PermissionServiceImpl implements PermissionService {

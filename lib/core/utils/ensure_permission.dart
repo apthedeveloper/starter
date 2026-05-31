@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:starter_project/core/controller/permission/permission.provider.dart';
-import 'package:starter_project/core/logger/app_logger.dart';
 import 'package:starter_project/core/services/permission/permission.service.dart';
 import 'package:starter_project/shared/widgets/permission/permission_dialogs.dart';
 
