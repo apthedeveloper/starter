@@ -9,6 +9,9 @@ concurrency:
   group: flutter-ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  APP_NAME: STARTER_PROJECT
+
 jobs:
   flutter-ci:
     name: Analyze, Test & Build
@@ -49,10 +52,41 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Rename APK
+        run: |
+          DATE=$(date +'%d-%b-%Y')
+          APK_NAME="${APP_NAME} (${DATE}).apk"
+
+          mv \
+            build/app/outputs/flutter-apk/app-release.apk \
+            "build/app/outputs/flutter-apk/${APK_NAME}"
+
+          echo "APK_NAME=${APK_NAME}" >> $GITHUB_ENV
+
+      - name: Verify APK Exists
+        run: |
+          ls -lah build/app/outputs/flutter-apk/
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Upload APK to Firebase App Distribution
+        run: |
+          firebase appdistribution:distribute \
+            "build/app/outputs/flutter-apk/${APK_NAME}" \
+            --app "${{ secrets.FIREBASE_APP_ID }}" \
+            --groups "testers" \
+            --release-notes "Build from commit ${{ github.sha }} on branch ${{ github.ref_name }}"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
       - name: Upload APK Artifact
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: ${{ env.APK_NAME }}
+          path: build/app/outputs/flutter-apk/${{ env.APK_NAME }}
           retention-days: 7
+
+
+
